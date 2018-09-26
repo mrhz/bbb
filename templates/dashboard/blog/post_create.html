@@ -1,0 +1,170 @@
+{% extends "dashboard/blog/base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+
+
+
+
+
+    <div class="col-md-12 mt-5">
+
+    {% for message in messages %}
+        {% if "html_safe" in message.tags %}
+            <div class="m-alert m-alert--icon alert alert-success" role="alert">
+
+            <div class="m-alert__icon">
+                <i class="la la-check-circle"></i>
+            </div>
+            <div class="m-alert__text font-fa font-bold">
+                {{ message|safe }}
+            </div>
+        {% else %}
+            <div class="m-alert m-alert--icon alert alert-danger" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-warning"></i>
+            </div>
+            <div class="m-alert__text font-fa font-bold">
+                {{ message }}
+            </div>
+
+        {% endif %}
+    <div class="m-alert__close">
+        <button type="button" class="close" data-close="alert" aria-label="Hide">
+        </button>
+    </div>
+    </div>
+
+    {% endfor %}
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+												<span class="m-portlet__head-icon m--hide">
+													<i class="la la-gear"></i>
+												</span>
+                <h3 class="m-portlet__head-text font-fa font-bold">
+                    فرم ایجاد پست جدید
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!--begin::Form-->
+
+
+    <form method="post" action="" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="m-portlet__body">
+            <div class="form-group m-form__group row">
+                <label for="id_title" class="col-lg-2 col-form-label font-fa font-bold">عنوان</label>
+                <div class="col-lg-4">
+                    <input type="text" id="id_title" name="title" class="form-control m-input  font-fa"
+                           placeholder="عنوان پست را وارد کنید" required>
+                    <span class="m-form__help">Please enter your full name</span>
+                </div>
+                <label for="id_category" class="col-lg-2 col-form-label font-fa font-bold">دسته بندی:</label>
+                <div class="col-lg-3">
+                    <select class="form-control m-input  font-fa" id="id_category" name="category" required>
+                        <option value="">انتخاب کنید</option>
+                        {% for category in categories %}
+
+                            <option value="{{ category.id }}">{{ category.title }}</option>
+                        {% endfor %}
+
+                    </select>
+                    <span class="m-form__help">Please enter your contact number</span>
+                </div>
+
+            </div>
+           <div class="form-group m-form__group row">
+                <label for="id_card_image" class="col-lg-2 col-form-label font-fa font-bold">تصویر صفحه اصلی</label>
+                <div class="custom-file col-lg-4">
+                    <input type="file" class="custom-file-input  " id="id_card_image" name="card_image" >
+                    <label class="custom-file-label font-fa" for="id_card_image" >فایل تصویر را انتخاب کنید</label>
+                </div>
+                <label for="id_main_image" class="col-lg-2 col-form-label font-fa font-bold">تصویر داخل محتوا</label>
+                <div class="custom-file col-lg-3">
+                    <input type="file" class="custom-file-input" id="id_main_image" name="main_image">
+                    <label class="custom-file-label font-fa" for="id_main_image">فایل تصویر را انتخاب کنید</label>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label for="id_description" class="col-lg-2 col-form-label  font-fa font-bold">محتوای پست:</label>
+                <div class="col-lg-9">
+                            <textarea id="id_description" name="description" class="form-control"
+                                      placeholder="" rows="6"
+                                      style="margin-top: 0px; margin-bottom: 0px; height: 343px;" required></textarea>
+                    <span class="m-form__help">Bootstrap maxlength supports textarea as well as inputs</span>
+                </div>
+
+            </div>
+            <div class="form-group m-form__group row">
+                <label for="id_tags" class="col-lg-2 col-form-label font-fa font-bold">تگ ها:</label>
+
+                <div class="col-lg-6 ">
+
+                    <select class="form-control m-select2" id="m_select2_3" name="param" multiple="multiple" >
+                        <optgroup label="Alaskan/Hawaiian Time Zone">
+                            {% for tag in tags %}
+                                <option value="{{ tag.id }}">{{ tag.title }}</option>
+                            {% endfor %}
+                        </optgroup>
+
+                    </select>
+
+
+                </div>
+
+                <label for="id_featured" class="col-lg-2 col-form-labeln  font-fa font-bold">پست ویژه:</label>
+                <div class="col-lg-1">
+                       					<span class="m-switch m-switch--sm m-switch--icon">
+																		<label>
+																			<input id="id_featured" name="featured"
+                                                                                   type="checkbox"
+                                                                                    {% if instance.featured == True %}
+                                                                                   checked {% endif %} >
+																			<span></span>
+																		</label>
+																	</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+            <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-10">
+
+                        <button type="submit" value="submit" name="submit_btn" class="btn btn-success font-fa font-bold">ثبت پست</button>
+                        <button type="submit" value="submit" name="draft_btn" class="btn btn-outline-warning font-fa font-bold">ذخیره در پیش نویس</button>
+                         <button type="submit" value="submit" name="archive_btn" class="btn btn-outline-accent font-fa font-bold">‌ذخیره در آرشیو</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--end::Form-->
+</div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block extra_script %}
+
+    <script src="{% static "assets/demo/default/custom/crud/forms/widgets/bootstrap-select.js" %}"
+            type="text/javascript"></script>
+    <script src="{% static "assets/demo/default/custom/crud/forms/widgets/select2.js" %}"
+            type="text/javascript"></script>
+{% endblock %}

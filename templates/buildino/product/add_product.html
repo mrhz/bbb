@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% for message in messages %}
+
+
+    <h3> {{ message }} </h3>
+
+{% endfor %}
+
+
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="id_resellers">select a brand:</label>
+    <select id="id_resellers" name="reseller_brand" required>
+        <option value="">انتخاب کنید</option>
+        {% for re in resellers %}
+            re.id
+            <option value="{{ re.id }}">{{ re.brand.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="id_pname">name:</label>
+    <input type="text" id="id_pname" name="p_name"
+           placeholder="enter name" required>
+
+    <label for="id_units">select a unit:</label>
+    <select id="id_units" name="units" required>
+        <option value="">انتخاب کنید</option>
+        {% for unit in units %}
+            <option value="{{ unit.id }}">{{ unit.name }}</option>
+        {% endfor %}
+    </select>
+
+    {% for field in fields %}
+        <label for="{{ field.name }}_{{ field.id }}">{{ field.name }}:</label>
+        <input type="text" id="{{ field.name }}_{{ field.id }}" name="{{ field.name }}{{ field.id }}"
+               placeholder="enter model" required>
+    {% endfor %}
+
+
+    {##}
+    {##}
+    {#    <label for="id_model">model:</label>#}
+    {#    <input type="text" id="id_model" name="model"#}
+    {#           placeholder="enter model" required>#}
+    {##}
+    {#    <label for="id_ram">ram:</label>#}
+    {#    <input type="text" id="id_ram" name="ram"#}
+    {#           placeholder="enter ram" required>#}
+    {#    <label for="id_cpu">cpu:</label>#}
+    {#    <input type="text" id="id_cpu" name="cpu"#}
+    {#           placeholder="enter cpu" required>#}
+    {#    <label for="id_harddisk">model:</label>#}
+    {#    <input type="text" id="id_harddisk" name="hard_disk"#}
+    {#           placeholder="enter hard disk" required>#}
+
+    <button type="submit" value="submit">save!</button>
+
+</form>
+</body>
+</html>

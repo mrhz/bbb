@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="c-layout-page">
+        <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+        <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+            <div class="container">
+                <ul class="c-page-breadcrumbs c-theme-nav c-pull-left c-fonts-regular">
+                    <li class="c-state_active font-fa"><a href="{% url 'accounts:profile' %}">داشبورد</a></li>
+                    <li>/</li>
+                    <li class="font-fa"><a href="{% url 'edit_profile' %}">ایجاد کالا</a></li>
+                </ul>
+                <div class="c-page-title c-pull-right">
+                    <h3 class="c-font-uppercase c-font-sbold font-fa">ایجاد کالا</h3>
+                    <h4 class="font-fa">فرم ایجاد کالا</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="c-layout-sidebar-content" style="padding: 0px;">
+                <!-- BEGIN: PAGE CONTENT -->
+                <!-- BEGIN: CONTENT/SHOPS/SHOP-CUSTOMER-DASHBOARD-1 -->
+                <div class="c-content-title-1">
+                    <h3 class="c-font-uppercase c-font-bold font-fa">ایجاد کالا</h3>
+                    <div class="c-line-left"></div>
+                </div>
+                <div class="row" style="margin: 0px;">
+                    <form class="c-shop-form-1" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- BEGIN: ADDRESS FORM -->
+                        <div class="">
+                            <!-- BEGIN: BILLING ADDRESS -->
+                            <div class="c-content-divider c-icon-bg c-left c-theme-bg">
+                                <i class="icon-present c-theme-bg c-font-white"></i>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row font-fa">
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">نام کالا :</label>
+                                            <input type="text" name="p_name"
+                                                   class="form-control c-square c-theme font-fa"
+                                                   placeholder="نام کالا" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">قیمت :</label>
+                                            <input type="text" name="p_price"
+                                                   class="form-control c-square c-theme font-fa"
+                                                   placeholder="قیمت" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12" role="group">
+                                    <div class="col-md-6">
+                                        <label class="control-label">عکس محصول :</label>
+                                        <input type="file" name="p_image"
+                                               class="form-control c-square c-theme font-fa"
+                                               placeholder="image" required>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label class="control-label font-fa">واحد ها</label>
+                                        <select name="units" class="form-control c-square c-theme font-fa"
+                                                style="padding-bottom: 0px;" required>
+                                            <option value="">انتخاب کنید</option>
+                                            {% for un in units %}
+                                                <option value="{{ un.id }}">{{ un.name }}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-lg-4">
+                                            <label class="control-label font-fa">دسته بندی</label>
+                                            <select class="form-control c-square c-theme font-fa" name="type_select"
+                                                    id="id_type"
+                                                    style="padding-bottom: 0px;" required>
+                                                <option value="">انتخاب کنید</option>
+                                                {% for ty in types %}
+                                                    <option value="{{ ty.id }}">{{ ty.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-lg-4">
+                                            <label class="control-label font-fa">فروشگاه</label>
+                                            <select name="agency" id="agency"
+                                                    class="form-control c-square c-theme font-fa"
+                                                    style="padding-bottom: 0px;" required>
+                                                <option value="">انتخاب کنید</option>
+                                                {% for ag in agency %}
+                                                    <option value="{{ ag.id }}">{{ ag.name }}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-lg-4">
+                                            <label class="control-label font-fa">برند ها</label>
+                                            <select name="reseller_brand" id="brand"
+                                                    class="form-control c-square c-theme font-fa"
+                                                    style="padding-bottom: 0px;" required>
+                                                <option value="">انتخاب کنید</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="desc" class="col-md-4 control-label font-fa">توضیحات محصول</label>
+                                    <div class="col-md-12">
+                                        <textarea class="form-control  c-square c-theme" name="desc" id="desc" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="specs" style="margin-bottom: 5px;">
+
+                            </div>
+                            <!-- END: BILLING ADDRESS -->
+                            <div class="row c-margin-t-30">
+                                <div class="form-group col-md-11" role="group">
+                                    <button type="submit"
+                                            class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold font-fa">
+                                        ثبت کالا
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: ADDRESS FORM -->
+                    </form>            <!-- END: PAGE CONTENT -->
+                </div><!-- END: CONTENT/SHOPS/SHOP-CUSTOMER-DASHBOARD-1 -->
+                <!-- END: PAGE CONTENT -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+
+
+            $("#id_type").change(function (event) {
+                console.log(event);
+                event.preventDefault();
+                var type_id = $(this).val();
+                console.log(type_id);
+                {# formData + "&password = " + $("#id_password").val() #}
+                $.ajax({
+                    url: '{% url "product:add_field" %}',
+                    data: {"type_id": type_id},
+                    type: 'post',
+                    dataType: 'json',
+
+
+                    {#success: Function( Anything data, String textStatus, jqXHR jqXHR )#}
+                    success: function (responseData, textStatus, jqXHR) {
+                        $("#message").text(responseData.message + " (status= " + textStatus + ")");
+                        console.log(responseData.fields)
+                        $('#specs').empty();
+                        for (f in responseData.fields) {
+                            console.log(responseData.fields[f].id);
+                            switch (responseData.fields[f].type) {
+                                case 'char':
+                                    $('#specs').append('' +
+                                        '<div class="col-md-6">\n' +
+                                        '<input type="hidden" name="input_fields" value="' + responseData.fields[f].id + '">\n' +
+                                        '<label class="control-label font-fa" for="#f_' + responseData.fields[f].id + '">' + responseData.fields[f].name + ' :</label>\n' +
+                                        '<input type="text" class="form-control c-square c-theme font-fa"\n' +
+                                        'name="field_input_' + responseData.fields[f].id + '" id="f_' + responseData.fields[f].id + '" required>\n' +
+                                        '</div>');
+                                    break;
+                                case 'txt':
+                                    $('#specs').append('' +
+                                        '<div class="col-md-6">\n' +
+                                        '<input type="hidden" name="input_fields" value="' + responseData.fields[f].id + '">\n' +
+                                        '<label class="control-label font-fa" for="#f_' + responseData.fields[f].id + '">' + responseData.fields[f].name + ' :</label>\n' +
+                                        '<input type="text" class="form-control c-square c-theme font-fa"\n' +
+                                        'name="field_input_' + responseData.fields[f].id + '" id="f_' + responseData.fields[f].id + '" required>\n' +
+                                        '</div>')
+                                    break;
+                                case 'int':
+                                    $('#specs').append('' +
+                                        '<div class="col-md-6">\n' +
+                                        '<input type="hidden" name="input_fields" value="' + responseData.fields[f].id + '">\n' +
+                                        '<label class="control-label font-fa" for="#f_' + responseData.fields[f].id + '">' + responseData.fields[f].name + ' :</label>\n' +
+                                        '<input type="num" class="form-control c-square c-theme font-fa"\n' +
+                                        'name="field_input_' + responseData.fields[f].id + '" id="f_' + responseData.fields[f].id + '" required>\n' +
+                                        '</div>')
+                                    break;
+                                case 'flo':
+                                    $('#specs').append('' +
+                                        '<div class="col-md-6">\n' +
+                                        '<input type="hidden" name="input_fields" value="' + responseData.fields[f].id + '">\n' +
+                                        '<label class="control-label font-fa" for="#f_' + responseData.fields[f].id + '">' + responseData.fields[f].name + ' :</label>\n' +
+                                        '<input type="num" class="form-control c-square c-theme font-fa"\n' +
+                                        'name="field_input_' + responseData.fields[f].id + '" id="f_' + responseData.fields[f].id + '" required>\n' +
+                                        '</div>')
+                                    break;
+                                case 'dat':
+                                    $('#specs').append('' +
+                                        '<div class="col-md-6">\n' +
+                                        '<input type="hidden" name="input_fields" value="' + responseData.fields[f].id + '">\n' +
+                                        '<label class="control-label font-fa" for="#f_' + responseData.fields[f].id + '">' + responseData.fields[f].name + ' :</label>\n' +
+                                        '<input type="date" class="form-control c-square c-theme font-fa"\n' +
+                                        'name="field_input_' + responseData.fields[f].id + '" id="f_' + responseData.fields[f].id + '" required>\n' +
+                                        '</div>')
+                                    break;
+                                case 'datt':
+                                    $('#specs').append('' +
+                                        '<div class="col-md-6">\n' +
+                                        '<input type="hidden" name="input_fields" value="' + responseData.fields[f].id + '">\n' +
+                                        '<label class="control-label font-fa" for="#f_' + responseData.fields[f].id + '">' + responseData.fields[f].name + ' :</label>\n' +
+                                        '<input type="date" class="form-control c-square c-theme font-fa"\n' +
+                                        'name="field_input_' + responseData.fields[f].id + '" id="f_' + responseData.fields[f].id + '" required>\n' +
+                                        '</div>')
+                                    break;
+                                case 'img':
+                                    $('#specs').append('' +
+                                        '<div class="col-md-6">\n' +
+                                        '<input type="hidden" name="input_fields" value="' + responseData.fields[f].id + '">\n' +
+                                        '<label class="control-label font-fa" for="#f_' + responseData.fields[f].id + '">' + responseData.fields[f].name + ' :</label>\n' +
+                                        '<input type="file" class="form-control c-square c-theme font-fa"\n' +
+                                        'name="field_input_' + responseData.fields[f].id + '" id="f_' + responseData.fields[f].id + '" required>\n' +
+                                        '</div>')
+                                    break;
+                                case 'fle':
+                                    $('#specs').append('' +
+                                        '<div class="col-md-6">\n' +
+                                        '<input type="hidden" name="input_fields" value="' + responseData.fields[f].id + '">\n' +
+                                        '<label class="control-label font-fa" for="#f_' + responseData.fields[f].id + '">' + responseData.fields[f].name + ' :</label>\n' +
+                                        '<input type="file" class="form-control c-square c-theme font-fa"\n' +
+                                        'name="field_input_' + responseData.fields[f].id + '" id="f_' + responseData.fields[f].id + '" required>\n' +
+                                        '</div>')
+                                    break;
+                            }
+
+                        }
+
+                        {#$('#generate_fields').html('<input value="'+  + '">');#}
+
+
+                    },
+
+                    {#error: Function( jqXHR jqXHR, String textStatus, String errorThrown )#}
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $("#message").text(jqXHR.responseJSON.error + " (status= " + textStatus + ")");
+
+                    },
+
+                    {#complete: Function( jqXHR jqXHR, String textStatus )#}
+                    complete: function (jqXHR, textStatus) {
+                        $("#your_name").val('');
+                    }
+
+                });
+
+
+            })
+
+
+        });
+        $('#agency').change(function () {
+            $.ajax({
+                url: '{% url 'product:load_brand'%}',
+                type: 'POST',
+                data: {
+                    'agency': $(this).val()
+                },
+                success: function (data) {
+                    $('#brand').html('<option value="">انتخاب کنید</option>');
+                    for (b in data.brands) {
+                        $('#brand').append('<option value="' + data.brands[b].id + '">' + data.brands[b].name + '</option>');
+                    }
+                }
+            })
+        })
+    </script>
+{% endblock %}

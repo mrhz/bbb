@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+
+
+<form action="" method="post">
+    {% csrf_token %}
+   {% for message in messages %}
+
+
+                {{ message }}
+
+    {% endfor %}
+
+    {{ form }}
+<p>
+    <input type="submit" value="submit" >
+</p>
+
+
+</form>
+
+</body>
+</html>

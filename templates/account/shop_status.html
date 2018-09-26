@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="c-layout-page">
+        <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+        <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+            <div class="container">
+                <ul class="c-page-breadcrumbs c-theme-nav c-pull-left c-fonts-regular">
+                    <li class="c-state_active font-fa"><a href="{% url 'accounts:profile' %}">پروفایل</a></li>
+                    <li>/</li>
+                    <li class="font-fa"><a href="">درخواست‌های ثبت فروشگاه</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="c-layout-sidebar-menu c-theme ">
+                <!-- BEGIN: LAYOUT/SIDEBARS/SHOP-SIDEBAR-DASHBOARD -->
+                <div class="c-sidebar-menu-toggler">
+                    <h3 class="c-title c-font-uppercase c-font-bold">پروفایل من</h3>
+                    <a href="javascript:;" class="c-content-toggler" data-toggle="collapse"
+                       data-target="#sidebar-menu-1">
+                        <span class="c-line"></span> <span class="c-line"></span> <span class="c-line"></span>
+                    </a>
+                </div>
+
+                   <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
+                    <li class="c-dropdown c-open">
+                        <a href="javascript:;" class="c-toggler font-fa">پروفایل من<span class="c-arrow"></span></a>
+                        <ul class="c-dropdown-menu">
+                            <li class="">
+                                <a href="{% url 'accounts:profile' %}" class="font-fa">پروفایل من</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'accounts:edit_profile' %}" class="font-fa">ویرایش پروفایل</a>
+                            </li>
+                            <li >
+                                <a href="{% url 'accounts:shop_status' %}" class="font-fa">درخواست‌های ثبت فروشگاه</a>
+                            </li>
+                             <li >
+                                <a href="{% url 'accounts:brand_status' %}" class="font-fa">درخواست‌های ثبت برند</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'accounts:upgrade' %}" class="font-fa">ایجاد فروشگاه</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'product:add_product' %}" class="font-fa">ایجاد کالا</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'change_password' %}" class="font-fa">ویرایش رمز عبور</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'logout' %}" class="font-fa">خروج</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul><!-- END: LAYOUT/SIDEBARS/SHOP-SIDEBAR-DASHBOARD -->
+            </div>
+            <div class="c-layout-sidebar-content ">
+                <!-- BEGIN: PAGE CONTENT -->
+                <!-- BEGIN: CONTENT/SHOPS/SHOP-CUSTOMER-DASHBOARD-1 -->
+                <div class="c-content-title-1">
+                    <h3 class="c-font-uppercase c-font-bold font-fa">وضعیت در خواست ها</h3>
+                    <div class="c-line-left"></div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered font-fa">
+                        <thead>
+                        <tr>
+                            <th class="font-bold">ردیف</th>
+                            <th class="font-bold">نام فروشگاه</th>
+                            <th class="font-bold">تاریخ</th>
+                            <th class="font-bold">وضعیت در خواست</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for agency in agencies %}
+                            <tr>
+
+
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td class="font-fa">{{ agency.name }}</td>
+                                <td class="font-fa">{{ agency.create_date }}</td>
+
+
+                                <td class="text-primary">
+                                    {% if agency.status == "accepted" %}
+                                        <span class="label
+
+                                 label-success c-font-slim c-font-uppercase c-font-bold">تایید شده</span>
+                                    {% endif %}
+                                 {% if agency.status == "pending" %}
+                                        <span class="label
+
+                                 label-warning c-font-slim c-font-uppercase c-font-bold">در انتظار تایید </span>
+                                    {% endif %}
+                                 {% if agency.status == "rejected" %}
+                                        <span class="label
+
+                                 label-danger c-font-slim c-font-uppercase c-font-bold">عدم تایید</span>
+                                    {% endif %}
+                                </td>
+
+
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END: PAGE CONTENT -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

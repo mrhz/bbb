@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block content %}
+    <div class="c-layout-page">
+    <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+    <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+        <div class="container">
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-left c-fonts-regular">
+                <li class="c-state_active font-fa"><a href="{% url 'profile' %}">داشبورد</a></li>
+                <li>/</li>
+                <li class="font-fa"><a href="{% url 'add_shop' %}">ایجاد فروشگاه</a></li>
+            </ul>
+            <div class="c-page-title c-pull-right">
+                <h3 class="c-font-uppercase c-font-sbold font-fa">ایجاد فروشگاه</h3>
+                <h4 class="font-fa">ایجادفروشگاه جدید</h4>
+            </div>
+        </div>
+    </div>
+        <div class="container">
+            <div class="c-layout-sidebar-content ">
+                <!-- BEGIN: PAGE CONTENT -->
+                <!-- BEGIN: CONTENT/SHOPS/SHOP-CUSTOMER-DASHBOARD-1 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="c-content-title-1 c-margin-b-60">
+                            <h3 class="c-center c-font-uppercase c-font-bold font-fa">
+                                ثبت فروشگاه
+                            </h3>
+                            <div class="c-line-center"></div>
+                            <p class="c-center c-font-uppercase c-font-17 font-fa">
+                                در این بخش می توانید فروشگاه خود را ثبت کنید
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 wow animate fadeInLeft">
+                        <div class="c-content-step-1 c-opt-1">
+                            <div class="c-icon" style="padding-bottom: 10px;"><span class="c-hr c-hr-first"><span
+                                    class="c-content-line-icon c-icon-14 c-theme"></span></span></div>
+                            <div id="step_1_text"
+                                 class="c-title c-font-20 c-font-bold c-font-uppercase font-fa text-primary">1. اطلاعات
+                                اولیه
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 wow animate fadeInLeft" data-wow-delay="0.2s">
+                        <div class="c-content-step-1 c-opt-1">
+                            <div class="c-icon" style="padding-bottom: 10px;"><span class="c-hr"><span
+                                    class="c-content-line-icon c-icon-21 c-theme"></span></span></div>
+                            <div id="step_2_text" class="c-title c-font-20 c-font-bold c-font-uppercase font-fa">2.
+                                مشخصات مکانی
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 wow animate fadeInLeft" data-wow-delay="0.4s">
+                        <div class="c-content-step-1 c-opt-1">
+                            <div class="c-icon" style="padding-bottom: 10px;"><span class="c-hr "><span
+                                    class="c-content-line-icon c-icon-32 c-theme"></span></span></div>
+                            <div id="step_3_text" class="c-title c-font-20 c-font-bold c-font-uppercase font-fa">3.
+                                نقشه
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 wow animate fadeInLeft" data-wow-delay="0.6s">
+                        <div class="c-content-step-1 c-opt-1">
+                            <div class="c-icon" style="padding-bottom: 10px;"><span class="c-hr c-hr-last"><span
+                                    class="c-content-line-icon c-icon-32 c-theme"></span></span></div>
+                            <div id="step_4_text" class="c-title c-font-20 c-font-bold c-font-uppercase font-fa">4.
+                                تایید اطلاعات
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"
+                             id="progressbar">
+                            <span class="sr-only">25% Complete (success)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row hidden" id="alert_fields">
+                    <div class="alert alert-danger font-fa" role="alert">لطفا تمام فیلد ها را پر کنید!</div>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row" id="step-0">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <div class="row font-fa">
+                                    <div class="form-group col-xs-12 col-md-6">
+                                        <label class="control-label">نام فروشگاه را وارد کنید</label>
+                                        <input type="text" class="form-control c-square c-theme font-fa"
+                                               placeholder="نام فروشگاه" required id="name">
+                                    </div>
+                                    <div class="form-group col-xs-12 col-md-6">
+                                        <label class="control-label">کد اقتصادی را وارد کنید:</label>
+                                        <input type="text" class="form-control c-square c-theme font-fa"
+                                               placeholder="کد اقتصادی" required id="economic_code">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-md-12 control-label font-fa">توضیحات</label>
+                                <div class="col-md-12">
+                                <textarea class="form-control  c-square c-theme" rows="3"
+                                          style="margin: 0px 0px 0px 140px; width: 70%; height: 155px;" required
+                                          id="desc"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <button type="button" class="btn btn-success font-fa" id="next-step">مرحله بعد</button>
+                        </div>
+                    </div>
+                    <div class="row hidden" id="step-1">
+                        <div class="row">
+
+                            <div class="col-md-11">
+                                <div class="row font-fa">
+                                    <div class="form-group col-xs-12 col-md-6">
+                                        <label class="control-label">آدرس را وارد کنید</label>
+                                        <input type="text" class="form-control c-square c-theme font-fa"
+                                               placeholder="آدرس" required id="address">
+                                    </div>
+                                    <div class="form-group col-xs-12 col-md-6">
+                                        <label class="control-label">شماره تماس را وارد کنید:</label>
+                                        <input type="text" class="form-control c-square c-theme font-fa"
+                                               placeholder="شماره تماس" required id="phone">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" class="btn btn-success font-fa" id="next-step">مرحله بعد</button>
+                            <button type="button" class="btn btn-primary font-fa" id="previous-step">مرحله قبل</button>
+                        </div>
+                    </div>
+                    <div class="row hidden" id="step-2">
+                        <p>maps-info</p>
+                        <div class="row">
+                            <button type="button" class="btn btn-success font-fa" id="next-step1">مرحله بعد</button>
+                            <button type="button" class="btn btn-primary font-fa" id="previous-step">مرحله قبل</button>
+                        </div>
+                    </div>
+                    <div class="row hidden" id="step-3">
+                        <p>confirm-info</p>
+                        <div class="row">
+                            <button type="submit" class="btn btn-success font-fa" id="next-step">پایان</button>
+                            <button type="button" class="btn btn-primary font-fa" id="previous-step">مرحله قبل</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- END: PAGE CONTENT -->
+            </div>
+        </div>
+    </div>
+    <div class="c-layout-paage">
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+
+
+        $(document).ready(function () {
+            $('.btn-success').on('click', function () {
+                var economic_code = $('#economic_code').val();
+                var name = $('#name').val();
+                var desc = $('#desc').val();
+                var address = $('#address').val();
+                var phone = $('#phone').val();
+                var id = $(this).parent().parent().attr('id').slice(-1);
+                var id1 = parseInt(id) + 1;
+                if (id1 == 1) {
+                    if (!name || !desc || !economic_code) {
+                        $('#alert_fields').removeClass('hidden');
+                    }
+                    else {
+                        $('#alert_fields').addClass('hidden');
+                        $('#step-' + id).attr('class', 'row hidden');
+                        $('#step-' + id1).attr('class', 'row');
+                        $('#step_1_text').removeClass('text-primary');
+                        $('#step_2_text').addClass('text-primary');
+                        $('#step_1_text').addClass('text-success');
+                        $('#progressbar').attr('style', 'width:50%');
+                    }
+
+                }
+                if (id1 == 2) {
+                    if (!address || !phone) {
+                        $('#alert_fields').removeClass('hidden');
+                    }
+                    else {
+                        $('#alert_fields').addClass('hidden');
+                        $('#step-' + id).attr('class', 'row hidden');
+                        $('#step-' + id1).attr('class', 'row');
+                        $('#progressbar').attr('style', 'width:75%');
+                        $('#step_2_text').removeClass('text-primary');
+                        $('#step_3_text').addClass('text-primary');
+                        $('#step_2_text').addClass('text-success');
+                    }
+
+                }
+                if (id1 == 3) {
+                    $('#step-' + id).attr('class', 'row hidden');
+                    $('#step-' + id1).attr('class', 'row');
+                    $('#progressbar').attr('style', 'width:100%');
+                    $('#step_3_text').removeClass('text-primary');
+                    $('#step_4_text').addClass('text-primary');
+                    $('#step_3_text').addClass('text-success');
+                }
+
+            });
+            $('.btn-primary').on('click', function () {
+                var id = $(this).parent().parent().attr('id').slice(-1);
+                var id1 = parseInt(id) - 1;
+                $('#step-' + id).attr('class', 'row hidden');
+                $('#step-' + id1).attr('class', 'row');
+                if (id1 == 0) {
+                    $('#progressbar').attr('style', 'width:25%');
+                    $('#step_2_text').removeClass('text-primary');
+                    $('#step_1_text').removeClass('text-success');
+                    $('#step_1_text').addClass('text-primary');
+
+                }
+                if (id1 == 1) {
+                    $('#progressbar').attr('style', 'width:50%');
+                    $('#step_3_text').removeClass('text-primary');
+                    $('#step_2_text').removeClass('text-success');
+                    $('#step_2_text').addClass('text-primary');
+                }
+                if (id1 == 2) {
+                    $('#progressbar').attr('style', 'width:75%');
+                    $('#step_4_text').removeClass('text-primary');
+                    $('#step_3_text').removeClass('text-success');
+                    $('#step_3_text').addClass('text-primary');
+                }
+            })
+        });
+
+    </script>
+{% endblock %}

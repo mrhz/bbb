@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Brand</title>
+</head>
+<body>
+
+<h1>submit brand {{ request.user }} >> {{ agency.name }}</h1>
+
+<h3>status: {{ agency.status }}</h3>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for message in messages %}
+
+
+        {{ message }}
+
+    {% endfor %}
+
+    {{ brand_form.as_p }}
+
+    <p>
+        <input type="submit" value="submit">
+    </p>
+
+</form>
+</body>
+</html>

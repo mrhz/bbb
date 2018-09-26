@@ -1,0 +1,392 @@
+{% extends "blog/post/base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+    <!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
+    <nav class="c-layout-quick-sidebar">
+        <div class="c-header">
+            <button type="button" class="c-link c-close">
+                <i class="icon-login"></i>
+            </button>
+        </div>
+        <div class="c-content">
+            <div class="c-section">
+                <h3>JANGO DEMOS</h3>
+                <div class="c-settings c-demos c-bs-grid-reset-space">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="../default/index.html" class="c-demo-container c-demo-img-lg">
+                                <div class="c-demo-thumb active">
+                                    <img src="../../assets/base/img/content/quick-sidebar/default.jpg"
+                                         class="c-demo-thumb-img"/>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="../corporate_1/index.html" class="c-demo-container">
+                                <div class="c-demo-thumb  c-thumb-left">
+                                    <img src="../../assets/base/img/content/quick-sidebar/corporate_1.jpg"
+                                         class="c-demo-thumb-img"/>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="../agency_1/index.html" class="c-demo-container">
+                                <div class="c-demo-thumb  c-thumb-right">
+                                    <img src="../../assets/base/img/content/quick-sidebar/corporate_1-onepage.jpg"
+                                         class="c-demo-thumb-img"/>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Theme Colors</h3>
+                <div class="c-settings">
+
+                    <span class="c-color c-default c-active" data-color="default"></span>
+
+                    <span class="c-color c-green1" data-color="green1"></span>
+                    <span class="c-color c-green2" data-color="green2"></span>
+                    <span class="c-color c-green3" data-color="green3"></span>
+
+                    <span class="c-color c-yellow1" data-color="yellow1"></span>
+                    <span class="c-color c-yellow2" data-color="yellow2"></span>
+                    <span class="c-color c-yellow3" data-color="yellow3"></span>
+
+                    <span class="c-color c-red1" data-color="red1"></span>
+                    <span class="c-color c-red2" data-color="red2"></span>
+                    <span class="c-color c-red3" data-color="red3"></span>
+
+                    <span class="c-color c-purple1" data-color="purple1"></span>
+                    <span class="c-color c-purple2" data-color="purple2"></span>
+                    <span class="c-color c-purple3" data-color="purple3"></span>
+
+                    <span class="c-color c-blue1" data-color="blue1"></span>
+                    <span class="c-color c-blue2" data-color="blue2"></span>
+                    <span class="c-color c-blue3" data-color="blue3"></span>
+
+                    <span class="c-color c-brown1" data-color="brown1"></span>
+                    <span class="c-color c-brown2" data-color="brown2"></span>
+                    <span class="c-color c-brown3" data-color="brown3"></span>
+
+                    <span class="c-color c-dark1" data-color="dark1"></span>
+                    <span class="c-color c-dark2" data-color="dark2"></span>
+                    <span class="c-color c-dark3" data-color="dark3"></span>
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Header Type</h3>
+                <div class="c-settings">
+                    <input type="button"
+                           class="c-setting_header-type btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active"
+                           data-value="boxed" value="boxed"/>
+                    <input type="button"
+                           class="c-setting_header-type btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase"
+                           data-value="fluid" value="fluid"/>
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Header Mode</h3>
+                <div class="c-settings">
+                    <input type="button"
+                           class="c-setting_header-mode btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active"
+                           data-value="fixed" value="fixed"/>
+                    <input type="button"
+                           class="c-setting_header-mode btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase"
+                           data-value="static" value="static"/>
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Mega Menu Style</h3>
+                <div class="c-settings">
+                    <input type="button"
+                           class="c-setting_megamenu-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active"
+                           data-value="dark" value="dark"/>
+                    <input type="button"
+                           class="c-setting_megamenu-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase"
+                           data-value="light" value="light"/>
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Font Style</h3>
+                <div class="c-settings">
+                    <input type="button"
+                           class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active"
+                           data-value="default" value="default"/>
+                    <input type="button"
+                           class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase"
+                           data-value="light" value="light"/>
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Reading Style</h3>
+                <div class="c-settings">
+                    <a href="http://www.themehats.com/themes/jango/"
+                       class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase ">LTR</a>
+                    <a href="http://www.themehats.com/themes/jango/rtl/"
+                       class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active">RTL</a>
+                </div>
+            </div>
+        </div>
+    </nav><!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
+
+    <!-- BEGIN: PAGE CONTAINER -->
+    <div class="c-layout-page">
+        <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
+
+        <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+            <div class="container">
+                <div class="c-page-title c-pull-left">
+                    <h3 class="c-font-uppercase c-font-sbold font-fa font-bold " style="color: #32c5d2">بیلدینو بلاگ |
+                        منبعی جامع از اطلاعات ساختمانی</h3>
+                </div>
+
+            </div>
+        </div><!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
+        <!-- BEGIN: PAGE CONTENT -->
+        <!-- BEGIN: BLOG LISTING -->
+        <div class="c-content-box c-size-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+
+                        {% if search == True %}
+                            <div class="row font-fa " style="padding-right: 18px !important;">
+
+                                <h4 class=" font-bold"><i class="icon-magnifier"> </i> نتیجه جستجو برای: <span
+                                        class="text-info">  "{{ request.GET.q }}" </span></h4>
+
+
+                            </div>
+
+                            <div class="row font-fa font-bold c-margin-b-30 " style="padding-right: 18px !important;">
+                                {% if articles_count == 0 or articles_count == None %}
+                                    <p class="text-danger"><i
+                                            class="icon-ban font-weight-bold"> </i> مورد
+                                        یافت نشد!</p>
+                                {% else %}
+                                    <p class="pl-3 text-success">  {{ articles_count }} مورد
+                                        یافت شد</p>
+
+                                {% endif %}
+                            </div>
+
+
+                        {% endif %}
+
+                        <div class="c-content-blog-post-1-list">
+                            {% for article in articles %}
+
+                                <div class="c-content-blog-post-card-1 c-option-2 c-bordered c-margin-b-40">
+                                    <div class="c-media">
+
+                                        <img class=" img-responsive"
+                                             src="{{ article.card_image_thumbnail.url }}" alt="">
+                                    </div>
+                                    <div class="c-body">
+                                        <div class="c-title c-font-bold c-font-uppercase font-fa font-bold">
+                                            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                                        </div>
+                                        <div class="c-author font-fa " style="font-size: 1.2rem">
+                                            توسط <a href="#"><span class="c-font-uppercase">{{ article.author }}</span></a>
+                                            در <span
+                                                class="c-font-uppercase">{{ article.publish_date|date:'Y/m/d' }}</span>
+                                        </div>
+
+
+                                        <div class="font-fa font-justify  "
+                                             style="font-size: 0.9em; padding-bottom: 30px !important; padding-top: 20px !important">
+                                            {{ article.description|truncatewords:100 }}
+                                        </div>
+
+                                        <div class="c-panel ">
+                                            {% if article.tags %}
+                                                <ul class="c-tags c-theme-ul-bg">
+                                                    {% for tag in article.tags.all %}
+                                                        <li>{{ tag }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                            <div class="c-comments"><a href="#"><i
+                                                    class="icon-eye"> </i> {{ article.get_hitcount }}</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                            <div class="c-pagination">
+                                <ul class="c-content-pagination c-theme">
+                                    {% if articles.has_previous %}
+                                        <li class="c-prev"><a href="?page={{ articles.previous_page_number }}"><i
+                                                class="fa fa-angle-right"></i></a></li>
+                                    {% endif %}
+                                    {% for i in articles.paginator.page_range %}
+
+                                        <li {% if articles.number == i %} class="c-active" {% endif %}><a
+                                                href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endfor %}
+                                    {% if articles.has_next %}
+                                        <li class="c-next"><a href="?page={{ articles.next_page_number }}"><i
+                                                class="fa fa-angle-left"></i></a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- BEGIN: CONTENT/BLOG/BLOG-SIDEBAR-1 -->
+                        <form action="" method="get">
+
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control c-square c-theme-border font-fa "
+                                       value="{{ request.GET.q }}" placeholder="جستجو....">
+                                <span class="input-group-btn">
+
+        <button class="btn c-theme-btn c-theme-border c-btn-square" type="submit">  <i
+                class="icon-magnifier"></i></button>
+      </span>
+                            </div>
+                        </form>
+
+                        <form action="" method="get">
+                            <div class="c-content-accordion-2  c-margin-t-30 ">
+                                <div class="panel-group" id="accordion-2" role="tablist">
+                                    <div class="panel ">
+                                        <div class="panel-heading" role="tab" id="headingOne-1">
+                                            <h4 class="panel-title">
+                                                <a class="c-font-bold c-font-16 font-fa font-bold"
+                                                   data-toggle="collapse"
+                                                   data-parent="#accordion-2" href="#collapseOne-1" aria-expanded="true"
+                                                   aria-controls="collapseOne">
+                                                    <i class="icon-folder "> </i> دسته بندی‌ها
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne-1" class="panel-collapse collapse in" role="tabpanel"
+                                             aria-labelledby="headingOne-1">
+                                            <div class="panel-body c-font-16 c-content-ver-nav"  >
+                                                {% for category in categories %}
+
+                                                    <ul class="c-menu c-arrow-dot c-theme font-fa">
+                                                        <li style="border-bottom: none !important;">
+
+
+
+                                                                <a >
+                                                                <label
+                                                                        for="{{ category.id }}"  style="font-size: 1.2rem; {% if cat_id == category.id %} color: #32c5d2; {% endif %}">{{ category.title }}</label>
+                                                                <input name="category" value="{{ category.id }}" id="{{ category.id }}"
+                                                                       type="submit" hidden>
+                                                                    </a>
+
+                                                        </li>
+
+                                                    </ul>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel">
+                                        <div class="panel-heading" role="tab" id="headingTwo-1">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed c-font-bold c-font-16 font-fa font-bold"
+                                                   data-toggle="collapse"
+                                                   data-parent="#accordion-2" href="#collapseTwo-1"
+                                                   aria-expanded="false"
+                                                   aria-controls="collapseTwo">
+                                                    <i class="icon-layers"></i> مرتب سازی
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo-1" class="panel-collapse collapse" role="tabpanel"
+                                             aria-labelledby="headingTwo-1">
+                                            <div class="panel-body c-font-18 font-fa font-bold">
+                                              تست
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel border">
+                                        <div class="panel-heading " role="tab" id="headingThree-1">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed c-font-bold c-font-16 font-fa font-bold"
+                                                   data-toggle="collapse"
+                                                   data-parent="#accordion-2" href="#collapseThree-1"
+                                                   aria-expanded="false"
+                                                   aria-controls="collapseThree">
+                                                    <i class="icon-note"></i> فایل ها
+                                                </a>
+
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree-1" class="panel-collapse collapse" role="tabpanel"
+                                             aria-labelledby="headingThree-1">
+                                            <div class="panel-body c-font-18">
+                                            تست
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="c-content-tab-1 c-theme c-margin-t-30">
+                            <div class="nav-justified">
+                                <ul class="nav nav-tabs nav-justified">
+                                    <li class="active  font-fa font-bold" style="font-size: 1.2rem !important;"><a
+                                            href="#blog_recent_posts" data-toggle="tab">پست‌های ویژه</a>
+                                    </li>
+
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="blog_recent_posts">
+
+                                        <ul class="c-content-recent-posts-1">
+
+                                            {% for featured in featured_articles %}
+                                                <li>
+                                                    <div class="c-image">
+                                                        <img src="{{ featured.card_image_featured_thumbnail.url }}"
+                                                             alt=""
+                                                             class="img-responsive">
+                                                    </div>
+                                                    <div class="c-post">
+                                                        <a href="{{ featured.get_absolute_url }}" class="c-title font-fa " style="font-size: 1.2rem">
+                                                            {{ featured.title }}
+                                                        </a>
+                                                        <div class="c-date">{{ featured.publish_date|date:'Y/m/d' }}</div>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                               <div class="c-image c-margin-t-40">
+                          <img class="img-responsive img-rounded" src="{% static "assets/Untitled-2.jpg" %}" alt="">
+                      </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: BLOG LISTING  -->
+
+        <!-- END: PAGE CONTENT -->
+    </div>
+    <!-- END: PAGE CONTAINER -->
+{% endblock %}

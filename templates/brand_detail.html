@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block content %}
+    <!-- BEGIN: CONTENT/SHOPS/SHOP-PRODUCT-DETAILS-2 -->
+    <div class="c-content-box c-size-lg c-overflow-hide ">
+        <div class="container">
+            <div class="c-shop-product-details-2">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="c-product-gallery">
+                            <div class="c-product-gallery-content">
+                                <div class="c-zoom">
+                                    <img src="{{ brand.logo.url }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="c-product-meta">
+                            <div class="c-content-title-1">
+                                <h3 class="c-font-uppercase c-font-bold  font-fa">{{ brand.name }}</h3>
+                                <div class="c-line-left"></div>
+                            </div>
+                            <div class="c-product-review">
+                                <div class="c-product-rating">
+                                    <i class="fa fa-star c-font-red"></i>
+                                    <i class="fa fa-star c-font-red"></i>
+                                    <i class="fa fa-star c-font-red"></i>
+                                    <i class="fa fa-star c-font-red"></i>
+                                    <i class="fa fa-star-half-o c-font-red"></i>
+                                </div>
+                            </div>
+                            <div class="c-product-short-desc font-fa">
+                                <p>{{ brand.description }}</p>
+                            </div>
+                            <div class="c-product-add-cart c-margin-t-20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'assets/plugins/zoom-master/jquery.zoom.min.js' %}" type="text/javascript"></script>
+{% endblock %}

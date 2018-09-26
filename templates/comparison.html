@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="c-layout-page">
+        <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+        <div class="container">
+
+            <div class="c-layout-sidebar-content">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12 font-fa" style="float: none;margin:0px auto">
+                            <div class="c-content-panel">
+                                <div class="c-body">
+                                    <div class="c-content-title-1 c-title-md c-margin-b-20 clearfix">
+                                        <h3 class="c-center c-font-uppercase c-font-bold">افزودن به مقایسه</h3>
+                                        <div class="c-line-center c-theme-bg"></div>
+                                    </div>
+                                    <form class="form-horizontal">
+
+                                        <div class="form-group">
+                                            <label class="control-label" style="margin-bottom: 10px;margin-right: 15px">دسته
+                                                بندی :</label>
+                                            <div class="col-xs-12">
+                                                <select class="form-control  c-square c-theme font-fa" name="category"
+                                                        id="category">
+                                                    <option value="1">انتخاب کنید</option>
+                                                    {% for cat in category %}
+                                                        <option value="{{ cat.id }}">{{ cat.name }}</option>
+                                                    {% endfor %}
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" style="margin-bottom: 10px;margin-right: 15px">نوع
+                                                کالا :</label>
+                                            <div class="col-xs-12">
+                                                <select class="form-control  c-square c-theme font-fa" name="type"
+                                                        id="type">
+                                                    <option value="1">انتخاب کنید</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" style="margin-bottom: 10px;margin-right: 15px">کالا
+                                                :</label>
+                                            <div class="col-xs-12">
+                                                <select class="form-control  c-square c-theme font-fa" name="product"
+                                                        id="product">
+                                                    <option value="">انتخاب کنید</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group c-margin-t-40">
+                                            <div class="col-sm-offset-3 col-md-8">
+                                                <button type="button" id="add_to_compare"
+                                                        class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
+                                                    افزودن به مقایسه
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BEGIN: PAGE CONTENT -->
+                <div class="c-shop-product-compare">
+                    <div class="c-content-title-1">
+                        <h3 class="c-font-uppercase c-font-bold font-fa">مقایسه محصولات</h3>
+                    </div>
+                    <div class="c-product-compare-content">
+                        <div class="c-product-data c-compare-products clearfix table-responsive">
+                            <div class="table-wrapper-responsive">
+                                <table class="c-product-compare-table" summary="Product Details">
+                                    <tr id="info">
+                                        <td class="c-compare-info c-bg-white">
+                                            <p class="font-fa">دو محصول در لیست مقایسه هستند.</p>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="3">
+                                            <h2 class="font-fa text-primary">مشخصات محصول</h2>
+                                        </th>
+                                    </tr>
+                                    <tr class="font-fa" id="brand">
+                                        <td class="c-compare-info">
+                                            برند
+                                        </td>
+                                    </tr>
+                                    <tr class="font-fa" id="unit">
+                                        <td class="c-compare-info">
+                                            واحد
+                                        </td>
+
+                                    </tr>
+
+                                    <tr class="font-fa">
+                                        <th colspan="3">
+                                            <h2 class="text-primary">امکانات</h2>
+                                        </th>
+                                    </tr>
+                                    <tbody id="specs">
+
+                                    </tbody>
+                                    <tr class="font-fa" id="operation">
+                                        <td class="c-compare-info">&nbsp;</td>
+
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>            <!-- END: PAGE CONTENT -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+    var el_count = 0;
+        $('#category').change(function () {
+            $.ajax({
+                url: '{% url 'product:load_cat' %}',
+                type: 'POST',
+                data: {
+                    'cat': $(this).val()
+                },
+                success: function (data) {
+                    $('#type').html('<option value="">انتخاب کنید</option>')
+                    for (ty in data.type) {
+                        $('#type').append('<option value="' + data.type[ty].id + '">' + data.type[ty].name + '</option>')
+                    }
+                }
+            })
+        });
+        $('#type').change(function () {
+            var tool = $('tr.sf').length
+            if (tool != 0) {
+                $('.sf').remove();
+                el_count=0;
+            }
+            $.ajax({
+                url: '{% url 'product:load_product' %}',
+                type: 'POST',
+                data: {
+                    'type': $(this).val()
+                },
+                success: function (data) {
+                    $('#product').html('<option value="">انتخاب کنید</option>');
+                    for (pr in data.product) {
+                        $('#product').append('<option value="' + data.product[pr].id + '" id="p_' + data.product[pr].id + '">' + data.product[pr].name + '</option>')
+                    }
+                    $('#specs').empty();
+                    for (f in data.field) {
+                        $('#specs').append('' +
+                            '<tr class="font-fa sf" id="' + data.field[f].name + '">' +
+                            '<td class="c-compare-info">' + data.field[f].name + '</td>' +
+                            '</tr>')
+                    }
+                }
+            });
+        });
+
+        $('#add_to_compare').click(function () {
+            if (el_count <= 3) {
+                $.ajax({
+                    url: '{% url 'product:add_compare' %}',
+                    data: {
+                        'product': $('#product').val()
+                    },
+                    success: function (data) {
+                        $('#p_' + data.product[0].id).remove();
+                        $('#brand').append('<td class="c-compare-item sf ' + data.product[0].id + '">' + data.product[0].brand + '</td>')
+                        $('#unit').append('<td class="c-compare-item sf ' + data.product[0].id + '">' + data.product[0].unit + '</td>')
+                        $('#info').append('' +
+                            '<td class="c-compare-item sf ' + data.product[0].id + '">' +
+                            '<a href="javascript:;">' +
+                            '<img src="' + data.product[0].image + '" alt="Black Winter Jacket">' +
+                            '<h3 class="font-fa"><a href="javascript:;">' + data.product[0].name + '</a></h3>' +
+                            '<strong class="c-compare-price">' + data.product[0].price + '</strong>' +
+                            '</a>' +
+                            '</td>')
+
+                        $('#operation').append('' +
+                            '<td class="c-compare-item sf ' + data.product[0].id + '">\n' +
+                            '<a href="/product/product_detail/' + data.product[0].id + '" class="btn btn-primary c-btn c-btn-square c-theme-btn c-btn-md c-margin-b-10"\n> مشاهده محصول </a>' +
+                            '<br>' +
+                            '<button type="button" id="' + data.product[0].name + '" name="' + data.product[0].id + '" class="btn btn-default c-btn c-btn-square c-theme-btn c-btn-border-1x c-btn-md delete">حذف</button>' +
+                            '</td>');
+                        for (pr in data.f_value) {
+                            $('#' + data.f_value[pr].name).append('' +
+                                '<td class="c-compare-item ' + data.product[0].id + '">' + data.f_value[pr].value + '</td>')
+                        }
+                    }
+                })
+                el_count = el_count+1;
+            }else{
+                alert('salam ba maram');
+            }
+        });
+        $('body').on('click', 'button.delete', function () {
+            var name = $(this).attr('id');
+            var id = $(this).attr('name');
+            $('.' + id).remove();
+            $('#product').append('<option value="' + id + '">' + name + '</option>')
+            el_count = el_count-1;
+        });
+
+    </script>
+{% endblock %}

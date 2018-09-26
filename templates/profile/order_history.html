@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="c-layout-page">
+        <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+        <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+            <div class="container">
+                <ul class="c-page-breadcrumbs c-theme-nav c-pull-left c-fonts-regular">
+                    <li class="c-state_active font-fa"><a href="{% url 'profile' %}">داشبورد</a></li>
+                    <li>/</li>
+                    <li class="font-fa"><a href="{% url 'order_history' %}">سوابق سفارش</a></li>
+                </ul>
+                <div class="c-page-title c-pull-right">
+                    <h3 class="c-font-uppercase c-font-sbold font-fa">سوابق سفارش</h3>
+                    <h4 class="font-fa">نمایش سوابق سفارش کاربر</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="c-layout-sidebar-menu c-theme ">
+                <!-- BEGIN: LAYOUT/SIDEBARS/SHOP-SIDEBAR-DASHBOARD -->
+                <div class="c-sidebar-menu-toggler">
+                    <h3 class="c-title c-font-uppercase c-font-bold">پروفایل من</h3>
+                    <a href="javascript:;" class="c-content-toggler" data-toggle="collapse"
+                       data-target="#sidebar-menu-1">
+                        <span class="c-line"></span> <span class="c-line"></span> <span class="c-line"></span>
+                    </a>
+                </div>
+
+                <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
+                    <li class="c-dropdown c-open">
+                        <a href="javascript:;" class="c-toggler font-fa">پروفایل من<span class="c-arrow"></span></a>
+                        <ul class="c-dropdown-menu">
+                            <li class="">
+                                <a href="{% url 'profile' %}" class="font-fa">داشبورد من</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'edit_profile' %}" class="font-fa">ویرایش پروفایل</a>
+                            </li>
+                            <li class="c-active">
+                                <a href="{% url 'order_history' %}" class="font-fa">سوابق سفارش</a>
+                            </li>
+                             <li class="">
+                                <a href="{% url 'add_shop' %}" class="font-fa">ایجاد فروشگاه</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'add_product' %}" class="font-fa">ایجاد کالا</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'change_password' %}" class="font-fa">ویرایش رمز عبور</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'logout' %}" class="font-fa">خروج</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul><!-- END: LAYOUT/SIDEBARS/SHOP-SIDEBAR-DASHBOARD -->
+            </div>
+            <div class="c-layout-sidebar-content ">
+                <!-- BEGIN: PAGE CONTENT -->
+                <!-- BEGIN: CONTENT/SHOPS/SHOP-CUSTOMER-DASHBOARD-1 -->
+                <div class="c-content-title-1">
+                    <h3 class="c-font-uppercase c-font-bold font-fa">سوابق سفارش</h3>
+                    <div class="c-line-left"></div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered font-fa">
+                        <thead>
+                        <tr>
+                            <th class="font-bold">ردیف</th>
+                            <th class="font-bold">نام کالا</th>
+                            <th class="font-bold">تاریخ</th>
+                            <th class="font-bold">تعداد</th>
+                            <th class="font-bold">قیمت</th>
+                            <th class="font-bold">تخفیف</th>
+                            <th class="font-bold">قیمت نهایی</th>
+                            <th class="font-bold">وضعیت سفارش</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>کاپشن زمستانی</td>
+                            <td>1397/06/23</td>
+                            <td>12</td>
+                            <td>150.000</td>
+                            <td>10%</td>
+                            <td>120.000</td>
+                            <td class="text-primary">
+                                <span class="label label-primary c-font-slim c-font-uppercase c-font-bold">در حال ارسال</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>کاپشن زمستانی</td>
+                            <td>1397/06/23</td>
+                            <td>12</td>
+                            <td>150.000</td>
+                            <td>10%</td>
+                            <td>120.000</td>
+                            <td class="text-success">
+                                <span class="label label-success c-font-slim c-font-uppercase c-font-bold">تحویل داده شده</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>کاپشن زمستانی</td>
+                            <td>1397/06/23</td>
+                            <td>12</td>
+                            <td>150.000</td>
+                            <td>10%</td>
+                            <td>120.000</td>
+                            <td class="text-danger">
+                                <span class="label label-danger c-font-slim c-font-uppercase c-font-bold">لغو شده</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END: PAGE CONTENT -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

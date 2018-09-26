@@ -1,0 +1,185 @@
+{% extends 'dashboard/blog/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- begin::Body -->
+
+                    <!-- BEGIN: Subheader -->
+                    <div class="m-subheader ">
+                        <div class="d-flex align-items-right">
+                            <div class="">
+                                <h3 class="m-subheader__title m-subheader__title--separator font-fa font-bold" style="border-right: none
+!important;">پنل مدیریت</h3>
+                                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                                    <li class="m-nav__item m-nav__item--home">
+                                        <a href="#" class="m-nav__link m-nav__link--icon ">
+                                            <i class="m-nav__link-icon la la-home"></i><span class="font-fa"
+                                                                                             style="color: #898b96; "> بازگشت به جهادآموز</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- END: Subheader -->
+                    <div class="m-content">
+                        <!--Begin::Section-->
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <div class="m-portlet m-portlet--full-height m-portlet--unair">
+
+                                    <div class="m-portlet__body">
+
+
+                                        <div class="m-nav-grid">
+                                            <div class="m-nav-grid__row">
+                                                <a href="{% url "dashboard:all_post_list" %}" class="m-nav-grid__item">
+                                                    <i class="m-nav-grid__icon flaticon-edit"></i>
+                                                    <span class="m-nav-grid__text font-fa font-bold"
+                                                          style="font-size: 0.9rem">ایجاد | ویرایش پست</span>
+                                                </a>
+                                                <a href="#" class="m-nav-grid__item">
+                                                    <i class="m-nav-grid__icon flaticon-folder"></i>
+                                                    <span class="m-nav-grid__text font-fa font-bold"
+                                                          style="font-size: 0.9rem">ایجاد | ویرایش دسته‌بندی</span>
+                                                </a>
+                                                <a href="#" class="m-nav-grid__item">
+                                                    <i class="m-nav-grid__icon flaticon-more-v4"></i>
+                                                    <span class="m-nav-grid__text font-fa font-bold"
+                                                          style="font-size: 0.9rem">ایجاد | ویرایش تگ</span>
+                                                </a>
+                                            </div>
+                                            <div class="m-nav-grid__row">
+                                                <a href="#" class="m-nav-grid__item">
+                                                    <i class="m-nav-grid__icon flaticon-graphic"></i>
+                                                    <span class="m-nav-grid__text font-fa font-bold"
+                                                          style="font-size: 0.9rem">کلمات کلیدی SEO</span>
+                                                </a>
+                                                <a href="#" class="m-nav-grid__item">
+                                                    <i class="m-nav-grid__icon flaticon-statistics"></i>
+                                                    <span class="m-nav-grid__text font-fa font-bold"
+                                                          style="font-size: 0.9rem">آمارها و بازدیدها</span>
+                                                </a>
+                                                {#                                                                <a href="#" class="m-nav-grid__item">#}
+                                                {#                                                                    <i class="m-nav-grid__icon flaticon-interface-3"></i>#}
+                                                {#                                                                    <span class="m-nav-grid__text font-fa font-bold" style="font-size: 0.9rem">Check Logs</span>#}
+                                                {#                                                                </a>#}
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-7">
+                                <div class="m-portlet m-portlet--full-height">
+                                    <div class="m-portlet__body m-portlet__ ">
+                                        <div class="row m-row--no-padding m-row--col-separator-xl">
+                                            <div class="col-xl-7">
+                                                <!--begin:: Widgets/Stats2-1 -->
+                                                <div class="m-widget1">
+                                                    <div class="m-widget1__item ">
+                                                        <div class="row m-row--no-padding align-items-center">
+                                                            <div class="col">
+                                                                <h3 class="m-widget1__title font-fa font-bold"
+                                                                    style="font-size: 1rem">تعداد کل پست‌ها</h3>
+
+                                                            </div>
+                                                            <div class="col m--align-right">
+                                                                <span class="m-widget1__number m--font-brand"><i
+                                                                        class="flaticon-file"></i> {{ posts_count }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="m-widget1__item">
+                                                        <div class="row m-row--no-padding align-items-center">
+                                                            <div class="col">
+                                                                <h3 class="m-widget1__title font-fa font-bold"
+                                                                    style="font-size: 1rem">تعداد کل بازدیدها</h3>
+
+                                                            </div>
+                                                            <div class="col m--align-right">
+                                                                <span class="m-widget1__number m--font-danger"><i
+                                                                        class="flaticon-medical"></i> {{ total_post_hitcount }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-widget1__item ">
+                                                        <div class="row m-row--no-padding align-items-center">
+                                                            <div class="col">
+                                                                <h3 class="m-widget1__title font-fa font-bold"
+                                                                    style="font-size: 1rem"> تعداد کل پست‌های من</h3>
+
+                                                            </div>
+                                                            <div class="col m--align-right">
+                                                                <span class="m-widget1__number m--font-brand"><i
+                                                                        class="flaticon-file"></i> {{ author_posts_count }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-widget1__item">
+                                                        <div class="row m-row--no-padding align-items-center">
+                                                            <div class="col">
+                                                                <h3 class="m-widget1__title font-fa font-bold"
+                                                                    style="font-size: 1rem">تعداد بازدید پست‌های من</h3>
+
+                                                            </div>
+                                                            <div class="col m--align-right">
+                                                                <span class="m-widget1__number m--font-success"><i
+                                                                        class="flaticon-medical"></i> {{ author_posts_hitcounts }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end:: Widgets/Stats2-1 -->            </div>
+                                            <div class="col-xl-5">
+                                                <!--begin:: Widgets/Daily Sales-->
+                                                <div class="m-widget14">
+                                                    <div class="m-widget14__header m--margin-bottom-30">
+                                                        <h3 class="m-widget14__title font-fa font-bold"
+                                                            style="font-size: 1.1rem">
+                                                            بازدیدهای روزانه
+                                                        </h3>
+                                                        <span class="m-widget14__desc font-fa"
+                                                              style="font-size:0.9rem ">
+		برای مشاهده جزییات، ستون‌ها را بررسی  کنید.
+		</span>
+                                                    </div>
+                                                    <div class="m-widget14__chart" style="height:120px;">
+                                                        <div class="chartjs-size-monitor"
+                                                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                                            <div class="chartjs-size-monitor-expand"
+                                                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                                            </div>
+                                                            <div class="chartjs-size-monitor-shrink"
+                                                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                                            </div>
+                                                        </div>
+                                                        <canvas id="m_chart_daily_sales" width="658" height="240"
+                                                                class="chartjs-render-monitor"
+                                                                style="display: block; height: 120px; width: 329px;"></canvas>
+                                                    </div>
+                                                </div>
+                                                <!--end:: Widgets/Daily Sales-->            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End::Section-->
+
+                    </div>
+
+        <!-- end:: Body -->
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,266 @@
+{% extends "dashboard/blog/base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-right">
+            <div class="">
+                <h3 class="m-subheader__title m-subheader__title--separator font-fa font-bold" style="border-right: none
+!important;">پنل مدیریت</h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="#" class="m-nav__link m-nav__link--icon ">
+                            <i class="m-nav__link-icon la la-home"></i><span class="font-fa"
+                                                                             style="color: #898b96; "> بازگشت به جهادآموز</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+
+    <div class="m-portlet m-portlet--mobile">
+
+        <div class="m-portlet__body">
+            <!--begin: Search Form -->
+            <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-40">
+                <div class="row align-items-center">
+                     <div class="col-xl-8 ">
+                        <a href="{% url "dashboard:blog_create_post" %}"
+                           class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air">
+						<span class="">
+							<i class="la la-plus-circle"></i>
+							<span class="font-fa font-bold">ایجاد پست جدید</span>
+						</span>
+                        </a>
+                        <div class="m-separator m-separator--dashed d-xl-none"></div>
+                    </div>
+                    <div class="col-xl-4 m--align-right">
+                        <div class="form-group m-form__group row align-items-center">
+                            <div class="col-md-12">
+                                <div class="m-input-icon m-input-icon--left">
+                                    <input type="text" class="form-control m-input" placeholder="Search..."
+                                           id="generalSearch">
+                                    <span class="m-input-icon__icon m-input-icon__icon--left">
+									<span><i class="la la-search"></i></span>
+								</span>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-xl-12 order-1 m--align-left">
+                    <div class="m-list-badge m-list-badge--light-bg">
+                        <div class="m-list-badge__label m--font-accent font-fa font-bold" style="font-size: 1rem">مرتب
+                            سازی براساس:
+                        </div>
+                        <div class="m-list-badge__items">
+                            <form method="post">
+                                {% csrf_token %}
+                                <button type="submit" value="submit" name="order_by_date"
+                                        class="btn btn-outline-accent btn-sm 	m-btn m-btn--icon m-btn--pill font-fa mr-1 {% if order == "-publish_date" %}
+                            active
+                            {% endif %}"><span><i class="fa flaticon-calendar"></i><span>تاریخ</span></span></button>
+                                <button type="submit" value="submit" name="order_by_author"
+                                        class="btn btn-outline-accent btn-sm 	m-btn m-btn--icon m-btn--pill font-fa mr-1{% if order == "author" %}
+                            active
+                            {% endif %}">
+                                    <span><i class="fa flaticon-user"></i><span>نویسنده</span></span></button>
+                                <button type="submit" value="submit" name="order_by_status"
+                                        class="btn btn-outline-accent btn-sm 	m-btn m-btn--icon m-btn--pill font-fa mr-1{% if order == "status" %}
+                            active
+                            {% endif %}">
+                                    <span><i class="fa flaticon-statistics"></i><span>وضعیت</span></span></button>
+                                <button type="submit" value="submit" name="order_by_title"
+                                        class="btn btn-outline-accent btn-sm 	m-btn m-btn--icon m-btn--pill font-fa mr-1{% if order == "title" %}
+                            active
+                            {% endif %}">
+                                    <span><i class="fa flaticon-file"></i><span>عنوان</span></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--end: Search Form -->
+
+            <!--begin: Datatable -->
+
+            <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="base_column_width"
+                 style="">
+                <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+                    <thead class="m-datatable__head">
+                    <tr class="m-datatable__row" style="right: 0px;">
+                        <th data-field="RecordID"
+                            class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check"><span
+                                style="width: 40px;"><label
+                                class="m-checkbox m-checkbox--single m-checkbox--all m-checkbox--solid m-checkbox--brand"><input
+                                type="checkbox"><span></span></label></span></th>
+                        <th data-field="Notes"
+                            class="m-datatable__cell m-datatable__cell--sort font-fa font-bold"
+                            data-sort="asc"><span style="width: 150px;">عنوان پست</span></th>
+                        <th data-field="Notes"
+                            class="m-datatable__cell m-datatable__cell--sort font-fa font-bold"><span
+                                style="width: 50px;">نویسنده</span></th>
+                        <th data-field="Date"
+                            class="m-datatable__cell m-datatable__cell--sort font-fa font-bold"><span
+                                style="width: 90px;">تاریخ پست</span></th>
+                        <th data-field="Status"
+                            class="m-datatable__cell m-datatable__cell--sort font-fa font-bold"><span
+                                style="width: 90px;">وضعیت</span></th>
+                        <th data-field="Actions"
+                            class="m-datatable__cell m-datatable__cell--sort font-fa font-bold"><span
+                                style="width: 90px;">نوع فعالیت</span></th>
+                    </tr>
+                    </thead>
+                    {% for article in articles %}
+                        <tbody class="m-datatable__body" style="">
+                        <tr data-row="{{ forloop.counter0 }}"
+                            class="m-datatable__row {% if forloop.counter|divisibleby:2 %} m-datatable__row--even {% endif %}"
+                            style="right: 0px;">
+                            <td class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check"
+                                data-field="RecordID"><span style="width: 40px;"><label
+                                    class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand"><input
+                                    type="checkbox" value="45"><span></span></label></span></td>
+                            <td class="m-datatable__cell--sorted m-datatable__cell font-fa"
+                                data-field="OrderID"><span
+                                    style="width: 150px;">{{ article.title|truncatechars:40 }}</span></td>
+                            <td data-field="Notes" class="m-datatable__cell font-fa"><span
+                                    style="width: 50px;">{{ article.author }}</span>
+                            </td>
+                            <td data-field="CompanyAgent" class="m-datatable__cell font-fa"><span
+                                    style="width: 90px;">{{ article.creation_date.date }}</span>
+                            </td>
+                            {#                                <td data-field="ShipDate" class="m-datatable__cell font-fa"><span#}
+                            {#                                        class="btn m-btn--pill m-btn--air   btn-outline-success btn-sm m-btn m-btn--custom active"#}
+                            {#                                        style="width: 90px;">{{ article.status }}</span>#}
+                            {#                                </td>#}
+                            <td data-field="Type" class="m-datatable__cell"><span style="width: 90px;"><span
+
+                                    class="m-badge {% if article.status == 'draft' %} m-badge--warning {% elif article.status == 'published' %} m-badge--success {% elif article.status == 'deleted' %} m-badge--danger {% elif article.status == 'hidden' %} m-badge--metal {% elif article.status == 'archived' %} m-badge--accent {% endif %} m-badge--dot"></span>&nbsp;<span
+                                    class="m--font-bold  {% if article.status == 'draft' %} m--font-warning {% elif article.status == 'published' %} m--font-success {% elif article.status == 'deleted' %} m--font-danger {% elif article.status == 'hidden' %} m--font-metal {% elif article.status == 'archived' %} m--font-accent {% endif %}">{{ article.status }}</span></span>
+                            </td>
+                            <td data-field="Actions" class="m-datatable__cell"><span
+                                    style="overflow: visible; position: relative; width: 90px;"><span>											<a
+                                    href="/dashboard/{{ article.pk }}/edit"
+                                    class="m-portlet__nav-lin btn m-btn  m-btn--hover-warning m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill  "
+                                    title="Edit details">							<i
+                                    class="la la-edit  "></i>						</a>						<a
+                                    href="#"
+                                    data-toggle="modal"
+                                    data-target="#m_modal_1"
+                                    class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill"
+                                    title="Delete">							<i class="la la-trash"></i>						</a>					</span></span>
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+
+
+
+                        <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header border-0">
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body font-fa font-bold">
+                                        <p>آیا از حذف "{{ article.title }}" اطمینان دارید؟</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary font-fa font-bold"
+                                                data-dismiss="modal">خیر
+                                        </button>
+                                        <form method="post" action="">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="object_id" value="{{ article.id }}">
+
+                                            <button type="submit" value="submit" name="delete_btn"
+                                                    class="btn btn-danger font-fa font-bold">بله، حذف شود
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    {% endfor %}
+                </table>
+                <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+                    <ul class="m-datatable__pager-nav">
+
+                        <li><a title="Previous"
+
+                                {%  if articles.has_previous %}href="?page={{ articles.previous_page_number }}"  class="m-datatable__pager-link m-datatable__pager-link--prev m-datatable__pager-link--prev" {% else %} class="m-datatable__pager-link m-datatable__pager-link--prev m-datatable__pager-link--disabled" disabled="disabled" {% endif %}><i class="la la-angle-right"></i></a></li>
+                        <li style="display: none;"><a title="More pages"
+                                                      class="m-datatable__pager-link m-datatable__pager-link--more-prev"
+                                                      data-page="1"><i class="la la-ellipsis-h"></i></a></li>
+                        <li style="display: none;"><input type="text" class="m-pager-input form-control"
+
+                                                          title="Page number"></li>
+                      {% for i in articles.paginator.page_range %}
+                        <li>
+                            <a class="m-datatable__pager-link m-datatable__pager-link-number {% if articles.number == i %} m-datatable__pager-link--active {% endif %}"
+                               data-page="{{ i }}" title="{{ i }}" href="?page={{ i }}">{{ i }}</a></li>
+                       {% endfor %}
+
+
+                        <li><a title="Next"
+                               {%  if articles.has_next %}href="?page={{ articles.next_page_number }}" class="m-datatable__pager-link m-datatable__pager-link--next" {% else %} class="m-datatable__pager-link m-datatable__pager-link--next m-datatable__pager-link--disabled" disabled="disabled" {% endif %} ><i class="la la-angle-left"></i></a></li>
+
+                    </ul>
+                    <div class="m-datatable__pager-info">
+                        <div class="dropdown">
+                            <button class="btn m-btn  m-btn--hover-accent dropdown-toggle font-fa font-bold"
+                                    style="font-size: 0.8rem !important;" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                تعداد در صفحه: {{ number_of_shows }} عدد
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                 x-placement="bottom-start"
+                                 style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(8px, 40px, 0px);">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                <button class="dropdown-item font-fa font-bold {% if number_of_shows == 15 %} active {% endif %}" type="submit" value="submit"  name="number_of_shows_15" ><i class="la la-file-text"></i> ۱۵ عدد</button>
+                                <button class="dropdown-item font-fa font-bold {% if number_of_shows == 30 %} active {% endif %}" type="submit" value="submit"  name="number_of_shows_30"><i class="la la-file-text"></i> ۳۰ عدد</button>
+                                <button class="dropdown-item font-fa font-bold {% if number_of_shows == 50 %} active {% endif %}"  type="submit" value="submit"  name="number_of_shows_50"><i class="la la-file-text"></i> ۵۰ عدد</button>
+                                    </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end: Datatable -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+{% endblock %}

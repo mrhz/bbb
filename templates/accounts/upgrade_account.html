@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This Is account upgrade!</title>
+</head>
+<body>
+
+<h1>upgrade for: {{ request.user }}</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+   {% for message in messages %}
+
+
+                {{ message }}
+
+    {% endfor %}
+
+    {{ agency_form.as_p}}
+    {{ address_form.as_p}}
+<p>
+    <input type="submit" value="submit" >
+</p>
+
+
+</form>
+
+</body>
+</html>

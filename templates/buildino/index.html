@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- BEGIN: LAYOUT/SLIDERS/REVO-SLIDER-4 -->
+    <section class="c-layout-revo-slider c-layout-revo-slider-4" dir="ltr">
+        <div class="tp-banner-container c-theme">
+            <div class="tp-banner rev_slider" data-version="5.0">
+                <ul>
+                    <!--BEGIN: SLIDE #1 -->
+                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000">
+                        <img alt="" src="{% static 'assets/base/img/content/backgrounds/bg-43.jpg' %}"
+                             data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        <div class="tp-caption customin customout" data-x="center" data-y="center" data-hoffset=""
+                             data-voffset="-20" data-speed="500" data-start="1000" data-transform_idle="o:1;"
+                             data-transform_in="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:500;e:Back.easeInOut;"
+                             data-transform_out="rX:0.5;scaleX:0.75;scaleY:0.75;o:0;s:500;e:Back.easeInOut;"
+                             data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
+                             data-endspeed="600">
+                            <h3 class="c-main-title-circle c-font-48 c-font-bold c-font c-font-uppercase c-font-white c-block font-fa font-bold">
+                               به بیلدینو خوش آمدید </h3>
+                        </div>
+                        <div class="tp-caption lft" data-x="center" data-y="center" data-voffset="110" data-speed="900"
+                             data-start="2000" data-transform_idle="o:1;"
+                             data-transform_in="x:100;y:100;rX:120;scaleX:0.75;scaleY:0.75;o:0;s:500;e:Back.easeInOut;"
+                             data-transform_out="x:100;y:100;rX:120;scaleX:0.75;scaleY:0.75;o:0;s:500;e:Back.easeInOut;">
+
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div style="background: #30343d">
+            <div class="row">
+                <div class="hidden-xs col-md-2">
+
+                </div>
+                <div class="col-xs-12 col-md-4 "
+                     style="text-align: right;margin-right: 20px;margin-top: 25px;margin-bottom: 25px">
+                    <h1 style="color: white; margin-top: 20px;" class="font-fa font-bold font-size-16px ">محصولت را بفروش</h1>
+                    <p style="color: gray;" class="font-fa font-size-14px">شما می توانید محصول خود را در بیلدینو بفروشید</p>
+                </div>
+                <div class="col-xs-12 col-md-4 font-fa">
+                    <a href="{% url "accounts:upgrade" %}" class="btn btn-xlg c-btn-blue c-btn-border-2x font-size-14px"
+                       style="margin-top: 50px;margin-bottom: 50px;margin-left: 30px;" >فروشگاه خود را ثبت کنید</a>
+                </div>
+                <div class="col-md-2 hidden-xs"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- END: LAYOUT/SLIDERS/REVO-SLIDER-4 -->
+    <!-- BEGIN: CONTENT/FEATURES/FEATURES-1 -->
+    <div class="c-content-box c-size-md c-overflow-hide c-bs-grid-small-space c-bg-grey-1">
+        <div class="container">
+            <div class="c-content-title-4">
+                <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span
+                        class="c-bg-grey-1 font-fa font-size-22px">محصولات اخیر</span>
+                </h3>
+            </div>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-3 col-sm-6 c-margin-b-20">
+                        <div class="c-content-product-2 c-bg-white">
+                            <div class="c-content-overlay">
+
+                                <div class="c-label c-label-right c-theme-bg c-font-uppercase c-font-white c-font-13 c-font-bold font-fa font-bold">
+                                    جدید
+                                </div>
+                                <div class="c-overlay-wrapper">
+                                    <div class="c-overlay-content">
+                                        <a href="product/product_detail/{{ product.pk }}"
+                                           class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square font-fa font-bold font-size-14px">مشاهده</a>
+                                    </div>
+                                </div>
+                                <div class="c-bg-img-center c-overlay-object" data-height="height"
+                                     style="height: 270px; background-image: url({{ product.productmedia_set.first.img_thumbnail.url }});"></div>
+                            </div>
+                            <div class="c-info">
+                                <p class="c-title c-font-17 c-font-slim font-fa font-bold">{{ product.name }}</p>
+                                <p class="c-price c-font-10 c-font-slim font-fa "
+                                   style="font-size: 13px"> {{ product.productprice_set.first.price }} &nbsp;ریال
+                                    {#                                <span class="c-font-16 c-font-line-through c-font-red">$600</span>#}
+                                </p>
+                            </div>
+                            <div class="btn-group btn-group-justified" role="group">
+                                <div class="btn-group c-border-top" role="group">
+                                    <a href="shop-product-سفارش.html"
+                                       class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product font-fa">سفارش</a>
+                                </div>
+                                <div class="btn-group c-border-left c-border-top" role="group">
+                                    <a href="shop-cart.html"
+                                       class="btn btn-lg c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product font-fa">علاقه
+                                        مندی</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="c-content-box c-size-md c-overflow-hide c-bs-grid-small-space ">
+        <div class="container">
+            <div class="c-content-title-4">
+                <h3 class="c-font-uppercase c-center c-font-bold c-line-strike"><span
+                        class="c-bg-grey-1 font-fa c-font-22">تازه‌های بلاگ</span>
+                </h3>
+            </div>
+            <div class="row">
+                {% for article in articles %}
+
+                    <div class="col-sm-6 col-md-3 col-xs-12">
+                        <div class="c-content-blog-post-card-1 c-option-2 c-bordered">
+                            <div class="c-media c-content-overlay">
+                                <a href="{{ article.get_absolute_url }}">
+                                <img class="c-overlay-object img-responsive"
+                                     src="{{ article.card_image_thumbnail.url }}" alt="">
+                                </a>
+                            </div>
+                            <div class="c-body">
+                                <div class="c-title c-font-bold c-font-uppercase font-fa font-bold"
+                                     style="font-size: 15px">
+                                    <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                                </div>
+                                <div class="c-author font-fa " style="font-size: 11px">
+
+                                    در تاریخ <span
+                                        class="c-font-uppercase">{{ article.publish_date|date:'Y/m/d' }}</span>
+                                </div>
+                                {##}
+                                {#                            <div class="c-panel">#}
+                                {#                                <ul class="c-tags c-theme-ul-bg">#}
+                                {#                                    <li>ux</li>#}
+                                {#                                    <li>web</li>#}
+                                {#                                    <li>events</li>#}
+                                {#                                </ul>#}
+                                {#                                <div class="c-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a>#}
+                                {#                                </div>#}
+                                {#                            </div>#}
+                                <p class="font-fa font-justify" style="font-size: 12px">
+                                    {{ article.description|truncatewords:30 }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="c-content-box c-size-md c-bg-white">
+        <div class="container">
+            <!-- Begin: Testimonals 1 component -->
+            <div class="c-content-client-logos-slider-1" data-slider="owl">
+                <!-- Begin: Title 1 component -->
+                <div class="c-content-title-1">
+                    <h3 class="c-center c-font-uppercase c-font-bold font-fa font-size-22px">برند ها</h3>
+                    <div class="c-line-center c-theme-bg"></div>
+                </div>
+                <!-- End-->
+                <!-- Begin: Owlcarousel -->
+                <div class="owl-carousel owl-theme c-theme c-owl-nav-center" data-items="5" data-desktop-items="4"
+                     data-desktop-small-items="3" data-tablet-items="3" data-mobile-small-items="1"
+                     data-auto-play="false" data-rtl="true" data-slide-speed="5000" data-auto-play-hover-pause="true">
+
+                    {% for brand in brands %}
+                    <div class="item">
+                        <a href="#"><img src="{{ brand.logo_thumbnail.url}}"
+                                         alt=""/></a>
+                    </div>
+{% endfor %}
+                </div>
+                <!-- End-->
+            </div>
+            <!-- End-->
+        </div>
+    </div>
+{% endblock %}
