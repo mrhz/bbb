@@ -18,82 +18,85 @@
                 <!-- BEGIN: CONTENT/SHOPS/SHOP-FILTER-SEARCH-1 -->
                 <form method="post" id="form_s">
                     {% csrf_token %}
-                    <ul class="c-shop-filter-search-1 list-unstyled">
-                        <li>
-                            <label class="control-label c-font-uppercase c-font-bold font-sized">دسته بندی :</label>
-                            <select class="form-control c-square c-theme font-fa" name="type" id="type">
-                                <option value="0">همه دسته بندی ها</option>
-                                {% for type in type %}
-                                    <option value="{{ type.id }}" {% if type.id == type_value %}
-                                            selected {% endif %}>{{ type.name }}</option>
-                                {% endfor %}
 
-                            </select>
-                        </li>
-                        <li>
-                            <label class="control-label c-font-uppercase c-font-bold font-sized">موجودیت :</label>
-                            <div class="c-checkbox">
-                                <input type="checkbox" value="False" id="checkbox-sidebar-2" class="c-check ch"> <label
-                                    for="checkbox-sidebar-2">
-                                <span class="inc"></span> <span class="check"></span> <span class="box"></span>
-                                <p>نا موجود (3)</p>
-                            </label>
-                            </div>
-                            <div class="c-checkbox c-checkbox-height">
-                                <input type="checkbox" value="True" id="checkbox-sidebar-3" class="c-check ch"> <label
-                                    for="checkbox-sidebar-3">
-                                <span class="inc"></span> <span class="check"></span> <span class="box"></span>
-                                <p>موجود (23)</p>
-                            </label>
-                            </div>
-                        </li>
-                        <li>
-                            <label class="control-label c-font-uppercase c-font-bold font-sized">بازه قیمتی :</label>
-                            <p class="font-fa" style="font-size: 14px">0 تا 10 میلیون تومان</p>
-                            <div class="c-price-range-box input-group">
-                                <div class="c-price input-group col-md-6 pull-left">
-                                    <span class="input-group-addon c-square c-theme">$</span>
-                                    <input type="number" class="form-control c-square c-theme" id="min-p"
-                                           placeholder="از">
+
+                    <div class="c-layout-sidebar-menu c-theme ">
+
+                        <ul class="c-shop-filter-search-1 list-unstyled">
+                            <li>
+                                <label class="control-label c-font-uppercase c-font-bold font-sized">دسته بندی :</label>
+                                <select class="form-control c-square c-theme font-fa" name="type" id="type">
+                                    <option value="0">همه دسته بندی ها</option>
+                                    {% for type in type %}
+                                        <option value="{{ type.id }}" {% if type.id == type_value %}
+                                                selected {% endif %}>{{ type.name }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </li>
+
+
+                        </ul>
+                        <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
+                            <li class="c-dropdown c-active c-open">
+                                <a href="javascript:;" class="c-toggler font-bold">برند ها<span class="c-arrow"></span></a>
+                                <ul class="c-dropdown-menu">
+                                    {% for brand in brand %}
+                                        <li>
+                                            <div class="c-checkbox c-checkbox-height">
+                                                <input type="checkbox" id="checkbox-sidebar-3-{{ forloop.counter }}"
+                                                       class="c-check bch"
+                                                       name="brand" value="{{ brand.id }}">
+                                                <label
+                                                        for="checkbox-sidebar-3-{{ forloop.counter }}">
+                                                    <span class="inc"></span> <span class="check"></span> <span
+                                                        class="box"></span>
+                                                    <p class="font-size-14px">{{ brand.name }}</p>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="c-shop-filter-search-1 list-unstyled">
+                            <li>
+                                <label class="control-label c-font-uppercase c-font-bold font-sized">بازه قیمتی
+                                    :</label>
+                                <p class="font-fa" style="font-size: 14px">0 تا 10 میلیون تومان</p>
+                                <div class="c-price-range-box input-group">
+                                    <div class="c-price input-group col-md-6 pull-left">
+                                        <span class="input-group-addon c-square c-theme">$</span>
+                                        <input type="number" class="form-control c-square c-theme" id="min-p"
+                                               placeholder="از">
+                                    </div>
+                                    <div class="c-price input-group col-md-6 pull-left">
+                                        <span class="input-group-addon c-square c-theme">$</span>
+                                        <input type="number" class="form-control c-square c-theme" id="max-p"
+                                               placeholder="تا">
+                                    </div>
                                 </div>
-                                <div class="c-price input-group col-md-6 pull-left">
-                                    <span class="input-group-addon c-square c-theme">$</span>
-                                    <input type="number" class="form-control c-square c-theme" id="max-p"
-                                           placeholder="تا">
+                            </li>
+                            <li>
+                                <button type="button" id="filter-button" class="btn c-btn-green">اعمال قیمت</button>
+                            </li>
+                            <li>
+                                <label class="control-label c-font-uppercase c-font-bold font-sized">موجودیت :</label>
+                                <div class="c-checkbox c-checkbox-height">
+                                    <input type="checkbox" value="True" id="checkbox-sidebar-3" class="c-check ch">
+                                    <label
+                                            for="checkbox-sidebar-3">
+                                        <span class="inc"></span> <span class="check"></span> <span class="box"></span>
+                                        <p class="font-size-14px">نمایش کالا های موجود</p>
+                                    </label>
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                            <button type="button" id="filter-button" class="btn btn-primary">اعمال فیلتر</button>
-                        </li>
-                    </ul><!-- END: CONTENT/SHOPS/SHOP-FILTER-SEARCH-1 -->
-                    <ul class="c-shop-filter-search-1 list-unstyled">
+                            </li>
+                        </ul><!-- END: CONTENT/SHOPS/SHOP-FILTER-SEARCH-1 -->
 
-                    </ul>
-                    <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
-                        <li class="c-dropdown c-active c-open">
-                            <a href="javascript:;" class="c-toggler">برند ها<span class="c-arrow"></span></a>
-                            <ul class="c-dropdown-menu">
-                                {% for brand in brand %}
-                                    <li>
-                                        <div class="c-checkbox c-checkbox-height">
-                                            <input type="checkbox" id="checkbox-sidebar-3-{{ forloop.counter }}"
-                                                   class="c-check bch"
-                                                   name="brand" value="{{ brand.id }}">
-                                            <label
-                                                    for="checkbox-sidebar-3-{{ forloop.counter }}">
-                                                <span class="inc"></span> <span class="check"></span> <span
-                                                    class="box"></span>
-                                                <p>{{ brand.name }}</p>
-                                            </label>
-                                        </div>
-                                    </li>
-                                {% endfor %}
+                        <ul class="c-shop-filter-search-1 list-unstyled">
 
-                            </ul>
-                        </li>
-                    </ul>
-
+                        </ul>
+                    </div>
                 </form>
                 <!-- END: LAYOUT/SIDEBARS/SHOP-SIDEBAR-MENU-2 -->
             </div>
@@ -162,8 +165,8 @@
                                 </div>
                                 <div class="c-info">
                                     <p class="c-title c-font-16 c-font-slim">{{ product.name }}</p>
-                                    <p class="c-price c-font-14 c-font-slim">150,000 &nbsp;
-                                        <span class="c-font-14 c-font-line-through c-font-red">{{ product.productprice_set.first.price }}</span>
+                                    <p class="c-price c-font-14 c-font-slim">
+                                        {{ product.productprice_set.first.price }}
                                     </p>
                                 </div>
                                 <div class="btn-group btn-group-justified" role="group">
@@ -172,9 +175,9 @@
                                            class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">سفارش</a>
                                     </div>
                                     <div class="btn-group c-border-left c-border-top" role="group">
-                                        <a href="shop-cart.html"
+                                        <button type="button" onclick="favorite({{ product.id }});"
                                            class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">علاقه
-                                            مندی</a>
+                                            مندی</button>
                                     </div>
                                 </div>
                             </div>
@@ -233,8 +236,7 @@
                             '</div>\n' +
                             '<div class="c-info">\n' +
                             '<p class="c-title c-font-16 c-font-slim">' + data.product[p].name + '</p>\n' +
-                            '<p class="c-price c-font-14 c-font-slim">150,000 &nbsp;\n' +
-                            '<span class="c-font-14 c-font-line-through c-font-red">' + data.product[p].price + '</span>\n' +
+                            '<p class="c-price c-font-14 c-font-slim">' + data.product[p].price +
                             '</p>\n' +
                             '</div>\n' +
                             '<div class="btn-group btn-group-justified" role="group">\n' +
@@ -242,7 +244,7 @@
                             '<a href="shop-product-wishlist.html" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">سفارش</a>\n' +
                             '</div>\n' +
                             '<div class="btn-group c-border-left c-border-top" role="group">\n' +
-                            '<a href="shop-cart.html" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">علاقه مندی</a>\n' +
+                            '<button onclick="favorite('+ data.product[p].id +');" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">علاقه مندی</button>\n' +
                             '</div>\n' +
                             '</div>\n' +
                             '</div>\n' +
@@ -251,6 +253,7 @@
                 }
             });
         }
+
         $('#type').change(function () {
             search_filter()
         });
@@ -285,8 +288,7 @@
                             '</div>\n' +
                             '<div class="c-info">\n' +
                             '<p class="c-title c-font-16 c-font-slim">' + data.product[p].name + '</p>\n' +
-                            '<p class="c-price c-font-14 c-font-slim">150,000 &nbsp;\n' +
-                            '<span class="c-font-14 c-font-line-through c-font-red">' + data.product[p].price + '</span>\n' +
+                            '<p class="c-price c-font-14 c-font-slim">'+ data.product[p].price +
                             '</p>\n' +
                             '</div>\n' +
                             '<div class="btn-group btn-group-justified" role="group">\n' +
@@ -294,7 +296,7 @@
                             '<a href="shop-product-wishlist.html" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">سفارش</a>\n' +
                             '</div>\n' +
                             '<div class="btn-group c-border-left c-border-top" role="group">\n' +
-                            '<a href="shop-cart.html" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">علاقه مندی</a>\n' +
+                            '<button onclick="favorite('+ data.product[p].id +')" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">علاقه مندی</button>\n' +
                             '</div>\n' +
                             '</div>\n' +
                             '</div>\n' +
@@ -330,8 +332,7 @@
                             '</div>\n' +
                             '<div class="c-info">\n' +
                             '<p class="c-title c-font-16 c-font-slim">' + data.product[p].name + '</p>\n' +
-                            '<p class="c-price c-font-14 c-font-slim">150,000 &nbsp;\n' +
-                            '<span class="c-font-14 c-font-line-through c-font-red">' + data.product[p].price + '</span>\n' +
+                            '<p class="c-price c-font-14 c-font-slim">' + data.product[p].price +
                             '</p>\n' +
                             '</div>\n' +
                             '<div class="btn-group btn-group-justified" role="group">\n' +
@@ -339,7 +340,7 @@
                             '<a href="shop-product-wishlist.html" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">سفارش</a>\n' +
                             '</div>\n' +
                             '<div class="btn-group c-border-left c-border-top" role="group">\n' +
-                            '<a href="shop-cart.html" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">علاقه مندی</a>\n' +
+                            '<button onclick="favorite('+ data.product[p].id +')" class="btn btn-sm c-btn-white c-btn-uppercase c-btn-square c-font-grey-3 c-font-white-hover c-bg-red-2-hover c-btn-product">علاقه مندی</button>\n' +
                             '</div>\n' +
                             '</div>\n' +
                             '</div>\n' +
@@ -350,9 +351,8 @@
         });
 
 
-
         $('#filter-button').click(function () {
-           search_filter()
+            search_filter()
         });
         $('.bch').click(function () {
             search_filter()

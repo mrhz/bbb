@@ -146,9 +146,9 @@ def search_filtering(request):
 def favorite(request):
     message = ''
     id = request.POST.get('pk', None)
-    product = Product.objects.get(pk=id)
-    counter = product.favorite.count()
-    if counter !=0:
+    product = Product.objects.get(id=id)
+    activity = Activity.objects.filter(content_type__app_label='product', content_type__model='product', object_id=id)
+    if activity.exists():
         message = 'کالا تکراری است'
     else:
         product.favorite.create(activity_type=Activity.FAVORITE, user=request.user)

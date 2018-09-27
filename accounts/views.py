@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from accounts.forms import ProfileForm
 from accounts.models import Profile
+from product.models import Product
 from provider.models import Agency, Brand
 
 
@@ -46,3 +47,13 @@ def account_brand_status(request):
         brands = None
 
     return render(request,'account/brand_status.html',{'brands':brands})
+
+
+@login_required
+def favorite_list(request):
+    try:
+        favorites = Product.objects.filter(reseller__agency__user=request.user).exclude(favorite=None)
+    except ObjectDoesNotExist:
+        favorites = None
+
+    return render(request,'account/favorite_list.html',{'favorites':favorites})

@@ -29,7 +29,7 @@
                     </a>
                 </div>
 
-                   <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
+                <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
                     <li class="c-dropdown c-open">
                         <a href="javascript:;" class="c-toggler font-fa">پروفایل من<span class="c-arrow"></span></a>
                         <ul class="c-dropdown-menu">
@@ -39,11 +39,14 @@
                             <li class="">
                                 <a href="{% url 'accounts:edit_profile' %}" class="font-fa">ویرایش پروفایل</a>
                             </li>
-                            <li >
+                            <li class="c-active">
                                 <a href="{% url 'accounts:shop_status' %}" class="font-fa">درخواست‌های ثبت فروشگاه</a>
                             </li>
-                             <li >
+                            <li>
                                 <a href="{% url 'accounts:brand_status' %}" class="font-fa">درخواست‌های ثبت برند</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'accounts:favorite_list' %}" class="font-fa">لیست علاقه مندی ها</a>
                             </li>
                             <li class="">
                                 <a href="{% url 'accounts:upgrade' %}" class="font-fa">ایجاد فروشگاه</a>
@@ -55,7 +58,7 @@
                                 <a href="{% url 'change_password' %}" class="font-fa">ویرایش رمز عبور</a>
                             </li>
                             <li class="">
-                                <a href="{% url 'logout' %}" class="font-fa">خروج</a>
+                                <a href="{% url 'account_logout' %}" class="font-fa">خروج</a>
                             </li>
                         </ul>
                     </li>
@@ -94,12 +97,12 @@
 
                                  label-success c-font-slim c-font-uppercase c-font-bold">تایید شده</span>
                                     {% endif %}
-                                 {% if agency.status == "pending" %}
+                                    {% if agency.status == "pending" %}
                                         <span class="label
 
                                  label-warning c-font-slim c-font-uppercase c-font-bold">در انتظار تایید </span>
                                     {% endif %}
-                                 {% if agency.status == "rejected" %}
+                                    {% if agency.status == "rejected" %}
                                         <span class="label
 
                                  label-danger c-font-slim c-font-uppercase c-font-bold">عدم تایید</span>

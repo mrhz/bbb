@@ -1,10 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="c-layout-page">
+        <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+        <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+            <div class="container">
+                <ul class="c-page-breadcrumbs c-theme-nav c-pull-left c-fonts-regular">
+                    <li class="c-state_active font-fa"><a href="{% url 'accounts:profile' %}"> پروفایل</a></li>
+                    <li>/</li>
+                    <li class="font-fa"><a href="">درخواست‌های ثبت برند</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="c-layout-sidebar-menu c-theme ">
+                <!-- BEGIN: LAYOUT/SIDEBARS/SHOP-SIDEBAR-DASHBOARD -->
+                <div class="c-sidebar-menu-toggler">
+                    <h3 class="c-title c-font-uppercase c-font-bold">پروفایل من</h3>
+                    <a href="javascript:;" class="c-content-toggler" data-toggle="collapse"
+                       data-target="#sidebar-menu-1">
+                        <span class="c-line"></span> <span class="c-line"></span> <span class="c-line"></span>
+                    </a>
+                </div>
+
+                <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
+                    <li class="c-dropdown c-open">
+                        <a href="javascript:;" class="c-toggler font-fa">پروفایل من<span class="c-arrow"></span></a>
+                        <ul class="c-dropdown-menu">
+                            <li class="">
+                                <a href="{% url 'accounts:profile' %}" class="font-fa">پروفایل من</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'accounts:edit_profile' %}" class="font-fa">ویرایش پروفایل</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'accounts:shop_status' %}" class="font-fa">درخواست‌های ثبت فروشگاه</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'accounts:brand_status' %}" class="font-fa">درخواست‌های ثبت برند</a>
+                            </li>
+                            <li class="c-active">
+                                <a href="{% url 'accounts:favorite_list' %}" class="font-fa">لیست علاقه مندی ها</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'accounts:upgrade' %}" class="font-fa">ایجاد فروشگاه</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'product:add_product' %}" class="font-fa">ایجاد کالا</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'change_password' %}" class="font-fa">ویرایش رمز عبور</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'account_logout' %}" class="font-fa">خروج</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul><!-- END: LAYOUT/SIDEBARS/SHOP-SIDEBAR-DASHBOARD -->
+            </div>
+            <div class="c-layout-sidebar-content ">
+                <!-- BEGIN: PAGE CONTENT -->
+                <!-- BEGIN: CONTENT/SHOPS/SHOP-CUSTOMER-DASHBOARD-1 -->
+                <div class="c-content-title-1">
+                    <h3 class="c-font-uppercase c-font-bold font-fa">وضعیت در خواست ها</h3>
+                    <div class="c-line-left"></div>
+                </div>
+                <div class="c-shop-cart-page-1">
+                    <div class="row c-cart-table-title">
+                        <div class="col-md-2 c-cart-image">
+                            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">تصویر</h3>
+                        </div>
+                        <div class="col-md-2 c-cart-ref">
+                            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">نام محصول</h3>
+                        </div>
+                        <div class="col-md-1 c-cart-qty">
+                            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">عملیات</h3>
+                        </div>
+                    </div>
+                    <!-- BEGIN: SHOPPING CART ITEM ROW -->
+                    {% for f in favorites %}
+                        <div class="row c-cart-table-row">
+                            <h2 class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first">
+                                مورد {{ forloop.counter }}</h2>
+                            <div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
+                                <img src="{{ f.productmedia_set.first.img.url }}"/>
+                            </div>
+                            <div class="col-md-2 col-sm-9 col-xs-7 c-cart-desc">
+                                <h3><a href="{% url 'product:product_detail' pk=f.id %}"
+                                       class="c-font-bold c-theme-link c-font-22 c-font-dark">{{ f.name }}</a></h3>
+                            </div>
+                            <div class="col-md-1 col-sm-3 col-xs-6 c-cart-ref" onclick="f_remove({{ f.id }});">
+                                <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">عملیات</p>
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <!-- END: SHOPPING CART ITEM ROW -->
+                </div>
+                <!-- END: PAGE CONTENT -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function f_remove(val) {
+    $.ajax({
+        url:'{% url 'accounts:del_favorite' %}',
+        type:'POST',
+        data:{
+            'id':val
+        },
+        success:function (data) {
+            alert(data.message);
+        }
+    })
+}
+</script>
+{% endblock %}

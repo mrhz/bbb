@@ -42,8 +42,11 @@
                             <li >
                                 <a href="{% url 'accounts:shop_status' %}" class="font-fa">درخواست‌های ثبت فروشگاه</a>
                             </li>
-                             <li >
+                             <li class="c-active">
                                 <a href="{% url 'accounts:brand_status' %}" class="font-fa">درخواست‌های ثبت برند</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url 'accounts:favorite_list' %}" class="font-fa">لیست علاقه مندی ها</a>
                             </li>
                             <li class="">
                                 <a href="{% url 'accounts:upgrade' %}" class="font-fa">ایجاد فروشگاه</a>
@@ -55,7 +58,7 @@
                                 <a href="{% url 'change_password' %}" class="font-fa">ویرایش رمز عبور</a>
                             </li>
                             <li class="">
-                                <a href="{% url 'logout' %}" class="font-fa">خروج</a>
+                                <a href="{% url 'account_logout' %}" class="font-fa">خروج</a>
                             </li>
                         </ul>
                     </li>
