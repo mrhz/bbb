@@ -57,3 +57,8 @@ def favorite_list(request):
         favorites = None
 
     return render(request,'account/favorite_list.html',{'favorites':favorites})
+
+@login_required
+def p_list(request):
+    products = Product.objects.filter(reseller__agency__user=request.user)
+    return render(request, 'account/product_list.html',{'products':products})

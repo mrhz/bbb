@@ -31,6 +31,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('accounts/', include('accounts.urls')),
+    path('provider/', include('provider.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^product/', include('product.urls')),
     path('product_detail', TemplateView.as_view(template_name='product_detail.html'), name="product_detail"),
@@ -47,6 +48,20 @@ urlpatterns = [
     path('logout', TemplateView.as_view(template_name='profile/logout.html'), name="logout"),
     path('brands', provider_views.brand_list, name="brands"),
     path('brand_detail/<pk>', provider_views.brand_detail, name="brand_detail"),
+
+    # New Dashboard Urls
+    path('metronic', TemplateView.as_view(template_name='metronic/base-metronic.html'), name="metronic"),
+    path('metronic/edit_profile', TemplateView.as_view(template_name='metronic/edit_profile.html'), name="edit_profile"),
+    path('metronic/brand_status', TemplateView.as_view(template_name='metronic/brand_status.html'), name="brand_status"),
+    path('metronic/shop_status', TemplateView.as_view(template_name='metronic/shop_status.html'), name="shop_status"),
+    path('metronic/favorite_list', TemplateView.as_view(template_name='metronic/favorite_list.html'), name="favorite_list"),
+    path('metronic/product_list', TemplateView.as_view(template_name='metronic/product_list.html'), name="product_list"),
+    path('metronic/submit_shop', TemplateView.as_view(template_name='metronic/submit_shop.html'), name="submit_shop"),
+    path('metronic/submit_product', TemplateView.as_view(template_name='metronic/submit_product.html'), name="submit_product"),
+    path('metronic/add_shop_wizard', TemplateView.as_view(template_name='metronic/add_shop_wizard.html'), name="add_shop_wizard"),
+
+
+
 
 ]
 

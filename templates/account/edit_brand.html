@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="c-layout-page">
+        <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+        <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+            <div class="container">
+                <ul class="c-page-breadcrumbs c-theme-nav c-pull-left c-fonts-regular">
+                    <li class="c-state_active font-fa"><a href="{% url 'accounts:profile' %}">پروفایل</a></li>
+                    <li>/</li>
+                    <li class="font-fa"><a href="">ثبت برند</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="c-content-title-1 c-margin-t-50">
+                <h3 class="c-font-uppercase c-font-bold font-fa">ثبت برند</h3>
+                <div class="c-line-left"></div>
+            </div>
+            <div class="row ">
+                <form class="c-shop-form-1" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- BEGIN: ADDRESS FORM -->
+                    <div class="">
+                        <!-- BEGIN: BILLING ADDRESS -->
+
+                        <div class="row c-margin-b-25 c-margin-b-25">
+                            {% for message in messages %}
+
+                                <div class="alert {% if message.success %} alert-success {% else %} alert-success {% endif %} font-fa"
+                                     role="alert"> {{ message }}</div>
+
+
+
+                            {% endfor %}
+                        </div>
+
+                        <div class="row">
+
+
+                            <div class="col-md-12">
+                                <div class="row font-fa">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">نام فروشگاه:</label>
+
+                                        <select name="agancy" class="form-control  c-square c-theme" required>
+                                            <option value=""> -</option>
+                                            {% for agency in agencies %}
+                                                <option value="{{ agency.id }}" {% if agency.id == brand.owner_id %}selected{% endif %}>{{ agency.name }}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-6">
+
+
+                                        <label for="#id_agent_type"
+
+                                               class=" control-label font-fa" style="font-size: 14px">
+                                            نوع فعالیت: </label>
+                                        <select id="id_agent_type" name="agent_type"
+                                                class="form-control  c-square c-theme font-fa"
+                                                required>
+                                            <option> -</option>
+                                            <option value="master_agent"> نماینده رسمی برند داخلی یا خارجی</option>
+                                            <option value="import_agent"> وارد کننده یا فروشنده برند</option>
+                                            <option value="regular_agent"> نماینده</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-md-12">
+                                <div class="row font-fa">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">نام برند:</label>
+                                        <input id='id_name' type="text" name="name"
+                                               class="form-control c-square c-theme font-fa"
+                                               placeholder="نام" value="{{ brand.name }}"
+                                        >
+                                    </div>
+                                    <div class="col-md-6">
+
+
+                                        <label for="#id_logo "
+
+                                               class=" control-label font-fa" style="font-size: 14px">
+                                            لوگو برند: </label>
+                                        <input type="file" name="logo" id="id_logo"
+                                               class="form-control c-square c-theme font-fa"
+                                               placeholder="عکس خود را انتخاب کنید">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label font-fa"> کد برند:</label>
+                                        <input type="number" class="form-control c-square c-theme font-fa"
+                                               placeholder="کد برند" name="id_code" value="{{ brand.id_code }}" id="#id_code" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label font-fa">کد پروانه:</label>
+                                        <input type="number" name="license_number"
+                                               class="form-control c-square c-theme font-fa"
+                                               placeholder="کد را وارد کنید" value="{{ brand.license_number }}"
+
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label class="control-label font-fa">کشور:</label>
+                                        <input type="text" name="country"
+                                               class="form-control c-square c-theme font-fa"
+                                               placeholder="کد را وارد کنید"
+                                               {% if profile.national_code %}value="{{ profile.national_code }}"{% endif %}
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- END: BILLING ADDRESS -->
+                        <!-- BEGIN: PASSWORD -->
+                        {#                            <div class="row">#}
+                        {#                                <div class="form-group col-md-11">#}
+                        {#                                    <label class="control-label">Change Password</label>#}
+                        {#                                    <input type="password" class="form-control c-square c-theme" placeholder="Password">#}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                        {#                            <div class="row">#}
+                        {#                                <div class="form-group col-md-11">#}
+                        {#                                    <label class="control-label">Repeat Password</label>#}
+                        {#                                    <input type="password" class="form-control c-square c-theme" placeholder="Password">#}
+                        {#                                    <p class="help-block">Hint: The password should be at least six characters long.#}
+                        {#                                        <br/>#}
+                        {#                                        To make it stronger, use upper and lower case letters, numbers, and symbols like#}
+                        {#                                        ! " ? $#}
+                        {#                                        % ^ & ).</p>#}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                        <!-- END: PASSWORD -->
+                        <div class="row c-margin-t-30 c-margin-b-60">
+                            <div class="form-group col-md-12 " role="group">
+                                <button type="submit"
+                                        class="btn btn-lg c-theme-btn c-btn-square c-btn-uppercase c-btn-bold font-fa">
+                                    درخواست ثبت برند
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: ADDRESS FORM -->
+                </form>            <!-- END: PAGE CONTENT -->
+            </div><!-- END: CONTENT/SHOPS/SHOP-CUSTOMER-DASHBOARD-1 -->
+            <!-- END: PAGE CONTENT -->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

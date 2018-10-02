@@ -14,3 +14,12 @@ def del_favorite(request):
         'message': 'از لیست علاقه مندی حذف شد'
     }
     return JsonResponse(data)
+
+@csrf_exempt
+def del_p(request):
+    id = request.POST.get('id', None)
+    Product.objects.filter(id=id).delete()
+    data={
+        'message' : 'محصول با مفقیت حذف شد'
+    }
+    return JsonResponse(data)

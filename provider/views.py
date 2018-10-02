@@ -1,13 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotFound, Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
+
 from provider.forms import AgencyForm, AddressForm, BrandForm
 from provider.models import Agency, Reseller, Brand
 
-
+@csrf_exempt
 @login_required
 def upgrade_account(request):
     if request.method == 'POST':
@@ -28,7 +30,7 @@ def upgrade_account(request):
         agency_form = AgencyForm()
         address_form = AddressForm()
 
-    return render(request, 'account/submit_shop.html', {'agency_form': agency_form,
+    return render(request, 'metronic/add_shop_wizard.html', {'agency_form': agency_form,
                                                              'address_form': address_form})
 
 
@@ -65,3 +67,14 @@ def brand_list(request):
 def brand_detail(request, pk):
     brand = Brand.objects.filter(id=pk).get()
     return render(request, 'brand_detail.html', {'brand': brand})
+
+
+@login_required
+def edit_brand(request, id):
+    agencies = Agency.objects.filter(user=request.user, status="accepted")
+    instance = Brand.objects.filter(id=id)
+    form = BrandForm(request.POST or None, request.FILES or None, instance)
+    if request.method == 'POST':
+        instance.update(name = request.POST.get('name'), owner_id=request.POST.get('agancy'), country=request.POST.get('country'), logo=request.FILES.get('logo'), id_code=request.POST.get('id_code'), license_number=request.POST.get('license_number'))
+        return redirect('accounts:profile')
+    return render(request, 'account/edit_brand.html', {'brand':instance.get(), 'agencies':agencies})

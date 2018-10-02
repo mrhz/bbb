@@ -1,0 +1,106 @@
+{% extends 'metronic/base-metronic.html' %}
+{% load static %}
+{% block stylesheet %}
+  <style>
+    input[type='file']{
+      display:none;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+    <!-- Add Brand Form -->
+    <div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+												<span class="m-portlet__head-icon m--hide">
+													<i class="la la-gear"></i>
+												</span>
+                    <h3 class="m-portlet__head-text font-fa">
+                        فرم ثبت برند
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <!--begin::Form-->
+        <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed font-fa">
+            <div class="m-portlet__body">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>نام فروشگاه :</label>
+                        <input type="text" class="form-control m-input font-fa"
+                               placeholder="بوتیک">
+                        <span class="m-form__help">لطفا نام فروشگاه خود را وارد کنید</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="exampleSelect1">نوع فعالیت :</label>
+                        <select class="form-control m-input font-fa" id="exampleSelect1">
+                            <option value="">انتخاب کنید</option>
+                            <option value="master_agent"> نماینده رسمی برند داخلی یا خارجی</option>
+                            <option value="import_agent"> وارد کننده یا فروشنده برند</option>
+                            <option value="regular_agent"> نماینده</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>نام برند:</label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input type="text" class="form-control m-input"
+                                   placeholder="سامسونگ">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+															<span>
+																<i class="flaticon-email"></i>
+															</span>
+														</span>
+                        </div>
+                        <span class="m-form__help">لطفا نام برند خود را وارد کنید</span>
+                    </div>
+                    <div class="col-lg-6">
+                      <span class="m-form__help mb-2">لطفا لوگو خود را وارد کنید</span><br>
+                      <label class=" btn btn-primary font-fa" style="color: white" for="profile_image">لوگو برند
+                          پروفایل</label>
+                      <input type="file" class="form-control m-input m-input--air" name="profile_image"
+                             id="profile_image">
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                  <div class="col-lg-6">
+                      <label>کد برند :</label>
+                      <input type="text" class="form-control m-input font-fa"
+                             placeholder="123123">
+                      <span class="m-form__help">لطفا کد برند خود را وارد کنید</span>
+                  </div>
+                  <div class="col-lg-6">
+                      <label>کد پروانه :</label>
+                      <input type="text" class="form-control m-input font-fa"
+                             placeholder="123123">
+                      <span class="m-form__help">لطفا کد پروانه خود را وارد کنید</span>
+                  </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>کشور :</label>
+                        <input type="text" class="form-control m-input font-fa"
+                               placeholder="ایران">
+                        <span class="m-form__help">لطفا کشور خود را وارد کنید</span>
+                    </div>
+                  </div>
+            </div>
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions--solid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-primary font-fa">ذخیره</button>
+                            <button type="reset" class="btn btn-secondary font-fa">انصراف
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--end::Form-->
+    </div>
+{% endblock %}

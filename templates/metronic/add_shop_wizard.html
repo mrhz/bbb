@@ -1,0 +1,490 @@
+{% extends 'metronic/base-metronic.html' %}
+{% load static %}
+{% block stylesheet %}
+    <style>
+        input[type='file'] {
+            display: none
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="m-content">
+
+        <!--Begin::Main Portlet-->
+        <div class="m-portlet m-portlet--full-height">
+
+            <!--begin: Portlet Head-->
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text font-fa">
+                            فرم ثبت فروشگاه
+                            <small></small>
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <a href="#" data-toggle="m-tooltip" class="m-portlet__nav-link m-portlet__nav-link--icon"
+                               data-direction="left" data-width="auto" title=""
+                               data-original-title="Get help with filling up this form">
+                                <i class="flaticon-info m--icon-font-size-lg3"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--end: Portlet Head-->
+
+            <!--begin: Form Wizard-->
+            <div class="m-wizard m-wizard--2 m-wizard--success m-wizard--step-first" id="m_wizard">
+
+                <!--begin: Message container -->
+                <div class="m-portlet__padding-x">
+
+                    <!-- Here you can put a message or alert -->
+                </div>
+
+                <!--end: Message container -->
+
+                <!--begin: Form Wizard Head -->
+                <div class="m-wizard__head m-portlet__padding-x">
+
+                    <!--begin: Form Wizard Progress -->
+                    <div class="m-wizard__progress">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!--end: Form Wizard Progress -->
+
+                    <!--begin: Form Wizard Nav -->
+                    <div class="m-wizard__nav">
+                        <div class="m-wizard__steps">
+                            <div class="m-wizard__step m-wizard__step--current" m-wizard-target="m_wizard_form_step_1">
+                                <a href="#" class="m-wizard__step-number">
+													<span>
+														<i class="fa  flaticon-placeholder"></i>
+													</span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title font-fa">
+                                        1. ثبت فروشگاه
+                                    </div>
+                                    <div class="m-wizard__step-desc font-fa">
+                                        اطلاعات مربوط به فروشگاه خود را وارد کنید
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_2">
+                                <a href="#" class="m-wizard__step-number">
+													<span>
+														<i class="fa  flaticon-layers"></i>
+													</span>
+                                </a>
+                                <div class="m-wizard__step-info">
+                                    <div class="m-wizard__step-title font-fa">
+                                        2. نوع فعالیت
+                                    </div>
+                                    <div class="m-wizard__step-desc font-fa">
+                                        نوع فعالیت خود را وارد کنید
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_3">
+                                <a href="#" class="m-wizard__step-number">
+													<span>
+														<i class="fa  flaticon-layers"></i>
+													</span>
+                                </a>
+                                <div class="m-wizard__step-info font-fa">
+                                    <div class="m-wizard__step-title">
+                                        3. ثبت برند
+                                    </div>
+                                    <div class="m-wizard__step-desc font-fa">
+                                        برند خود را ثبت کنید
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--end: Form Wizard Nav -->
+                </div>
+
+                <!--end: Form Wizard Head -->
+
+                <!--begin: Form Wizard Form-->
+                <div class="m-wizard__form">
+
+                    <!--
+1) Use m-form--label-align-left class to alight the form input lables to the right
+2) Use m-form--state class to highlight input control borders on form validation
+-->
+                    <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" novalidate="novalidate">
+                        {% csrf_token %}
+
+                        <!--begin: Form Body -->
+                        <div class="m-portlet__body">
+
+                            <!--begin: Form Wizard Step 1-->
+                            <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
+                                <div class="m-portlet__body">
+                                    <form method="post" enctype="multipart/form-data" id="fs1">
+                                        {% csrf_token %}
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-6">
+                                                <label>نام فروشگاه :</label>
+                                                <input type="text" name="name" class="form-control m-input font-fa"
+                                                       placeholder="بوتیک" id="name">
+                                                <span class="m-form__help">لطفا نام فروشگاه خود را وارد کنید</span>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <span class="m-form__help mb-2">لطفا لوگو خود را وارد کنید</span><br>
+                                                <label class=" btn btn-primary font-fa" style="color: white"
+                                                       for="shop_logo">لوگو فروشگاه</label>
+                                                <input type="file" class="form-control m-input m-input--air"
+                                                       name="logo"
+                                                       id="shop_logo">
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-6">
+                                                <label>کد اقتصادی:</label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input name="commercial_code" id="commercial_code" type="text"
+                                                           class="form-control m-input"
+                                                           placeholder="123123">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+															<span>
+																<i class="flaticon-email"></i>
+															</span>
+														</span>
+                                                </div>
+                                                <span class="m-form__help">لطفا کد اقتصادی خود را وارد کنید</span>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>کد پستی:</label>
+                                                <div class="m-input-icon m-input-icon--right">
+                                                    <input name="postal_code" id="postal_code" type="text"
+                                                           class="form-control m-input"
+                                                           placeholder="123123">
+                                                    <span class="m-input-icon__icon m-input-icon__icon--right">
+															<span>
+																<i class="flaticon-email"></i>
+															</span>
+														</span>
+                                                </div>
+                                                <span class="m-form__help">لطفا کد پستی خود را وارد کنید</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-6">
+                                                <label for="exampleTextarea">آدرس</label>
+                                                <textarea name="address" class="form-control m-input"
+                                                          id="address"
+                                                          rows="3"></textarea>
+                                                <span class="m-form__help">لطفا آدرس خود را وارد کنید</span>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label for="description">توضیحات</label>
+                                                <textarea name="description" class="form-control m-input"
+                                                          id="description"
+                                                          rows="3"></textarea>
+                                                <span class="m-form__help">لطفا توضیحات فروشگاه خود را وارد کنید</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-6">
+                                                <label>تلفن :</label>
+                                                <input name="phone_number" id="phone_number" type="text"
+                                                       class="form-control m-input font-fa"
+                                                       placeholder="ایران">
+                                                <span class="m-form__help">لطفا تلفن خود را وارد کنید</span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!--end: Form Wizard Step 1-->
+
+                            <!--begin: Form Wizard Step 2-->
+                            <div class="m-wizard__form-step" id="m_wizard_form_step_2">
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label>نام فروشگاه :</label>
+                                            <input type="text" class="form-control m-input font-fa"
+                                                   placeholder="بوتیک">
+                                            <span class="m-form__help">لطفا نام فروشگاه خود را وارد کنید</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="exampleSelect1">نوع فعالیت :</label>
+                                            <select class="form-control m-input font-fa" id="exampleSelect1">
+                                                <option value="">انتخاب کنید</option>
+                                                <option value="master_agent"> نماینده رسمی برند داخلی یا خارجی
+                                                </option>
+                                                <option value="import_agent"> وارد کننده یا فروشنده برند
+                                                </option>
+                                                <option value="regular_agent"> نماینده</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label>نام برند:</label>
+                                            <div class="m-input-icon m-input-icon--right">
+                                                <input type="text" class="form-control m-input"
+                                                       placeholder="سامسونگ">
+                                                <span class="m-input-icon__icon m-input-icon__icon--right">
+															<span>
+																<i class="flaticon-email"></i>
+															</span>
+														</span>
+                                            </div>
+                                            <span class="m-form__help">لطفا نام برند خود را وارد کنید</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <span class="m-form__help mb-2">لطفا لوگو خود را وارد کنید</span><br>
+                                            <label class=" btn btn-primary font-fa" style="color: white"
+                                                   for="profile_image">لوگو برند
+                                                پروفایل</label>
+                                            <input type="file" class="form-control m-input m-input--air"
+                                                   name="profile_image"
+                                                   id="profile_image">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label>کد برند :</label>
+                                            <input type="text" class="form-control m-input font-fa"
+                                                   placeholder="123123">
+                                            <span class="m-form__help">لطفا کد برند خود را وارد کنید</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>کد پروانه :</label>
+                                            <input type="text" class="form-control m-input font-fa"
+                                                   placeholder="123123">
+                                            <span class="m-form__help">لطفا کد پروانه خود را وارد کنید</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label>کشور :</label>
+                                            <input type="text" class="form-control m-input font-fa"
+                                                   placeholder="ایران">
+                                            <span class="m-form__help">لطفا کشور خود را وارد کنید</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--end: Form Wizard Step 2-->
+
+                            <!--begin: Form Wizard Step 3-->
+                            <div class="m-wizard__form-step" id="m_wizard_form_step_3">
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label>نام کالا :</label>
+                                            <input type="text" class="form-control m-input font-fa"
+                                                   placeholder="سیمان مشهد">
+                                            <span class="m-form__help">لطفا نام کالا خود را وارد کنید</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>قیمت :</label>
+                                            <div class="m-input-icon m-input-icon--right">
+                                                <input type="text" class="form-control m-input"
+                                                       placeholder="150000">
+                                                <span class="m-input-icon__icon m-input-icon__icon--right">
+															<span>
+																<i class="flaticon-email"></i>
+															</span>
+														</span>
+                                            </div>
+                                            <span class="m-form__help">لطفا قیمت خود را وارد کنید</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <span class="m-form__help mb-2">لطفا عکس محصول خود را وارد کنید</span><br>
+                                            <label class=" btn btn-primary font-fa" style="color: white"
+                                                   for="profile_image">عکس
+                                                محصول </label>
+                                            <input type="file" class="form-control m-input m-input--air"
+                                                   name="profile_image"
+                                                   id="profile_image">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="exampleSelect1">واحد ها :</label>
+                                            <select class="form-control m-input font-fa" id="exampleSelect1">
+                                                <option value="">انتخاب کنید</option>
+                                                <option value="master_agent">تعداد</option>
+                                                <option value="import_agent">کیلوگرم</option>
+                                                <option value="regular_agent">متر</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label for="exampleSelect1">دسته بندی :</label>
+                                            <select class="form-control m-input font-fa" id="exampleSelect1">
+                                                <option value="">انتخاب کنید</option>
+                                                <option value="master_agent">موبایل</option>
+                                                <option value="import_agent">کامپیوتر</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="exampleSelect1">فروشگاه :</label>
+                                            <select class="form-control m-input font-fa" id="exampleSelect1">
+                                                <option value="">انتخاب کنید</option>
+                                                <option value="master_agent">سامسونگ</option>
+                                                <option value="import_agent">هواوی</option>
+                                                <option value="regular_agent">ال جی</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="exampleSelect1">برند ها :</label>
+                                            <select class="form-control m-input font-fa" id="exampleSelect1">
+                                                <option value="">انتخاب کنید</option>
+                                                <option value="master_agent">سامسونگ</option>
+                                                <option value="import_agent">هواوی</option>
+                                                <option value="regular_agent">ال جی</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label for="exampleTextarea">توضیحات</label>
+                                        <textarea class="form-control m-input" id="exampleTextarea" rows="3"></textarea>
+                                        <span class="m-form__help">لطفا توضیحات کالا خود را وارد کنید</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--end: Form Wizard Step 3-->
+                        </div>
+
+                        <!--end: Form Body -->
+
+                        <!--begin: Form Actions -->
+                        <div class="m-portlet__foot m-portlet__foot container-fluid m--margin-top-40">
+                            <div class="m-form__actions">
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-4 m--align-left">
+                                        <a href="#" class="btn btn-secondary m-btn m-btn--custom m-btn--icon"
+                                           data-wizard-action="prev">
+															<span class="font-fa">
+																<i class="la la-arrow-left font-fa"></i>&nbsp;&nbsp;
+																<span>مرحله قبل</span>
+															</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-4 m--align-right">
+                                        <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon"
+                                           data-wizard-action="submit">
+															<span class="font-fa">
+																<i class="la la-check"></i>&nbsp;&nbsp;
+																<span>ثبت</span>
+															</span>
+                                        </a>
+                                        <a href="#" id="fs"
+                                           class="btn btn-warning m-btn m-btn--custom m-btn--icon font-fa"
+                                           data-wizard-action="next">
+															<span class="font-fa">
+																<span>مرحله بعد</span>&nbsp;&nbsp;
+																<i class="la la-arrow-left"></i>
+															</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end: Form Actions -->
+                    </form>
+                </div>
+
+                <!--end: Form Wizard Form-->
+            </div>
+
+            <!--end: Form Wizard-->
+        </div>
+
+        <!--End::Main Portlet-->
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var steps = 0;
+        $('#fs').on('click', function () {
+            var f = $('#fs1');
+            alert(steps);
+            if (steps == 0) {
+                $.ajax({
+                    url: '{% url 'provider:submit_shop' %}',
+                    type: 'POST',
+                    data: {
+                        'name': $('#name').val(),
+                        'logo': $('#shop_logo').val(),
+                        'commercial_code': $('#commercial_code').val(),
+                        'postal_code': $('#postal_code').val(),
+                        'address': $('#address').val(),
+                        'phone_number': $('#phone_number').val(),
+                        'description': $('#description').val(),
+                    },
+                    success: function (data) {
+                        alert(data.message)
+                        steps = 1
+                    }
+                });
+            }
+            if (steps == 1) {
+                $.ajax({
+                    url: '{% url 'provider:submit_shop' %}',
+                    type: 'POST',
+                    data: {
+                        'name': $('#name').val(),
+                        'logo': $('#shop_logo').val(),
+                        'commercial_code': $('#commercial_code').val(),
+                        'postal_code': $('#postal_code').val(),
+                        'address': $('#address').val(),
+                        'phone_number': $('#phone_number').val(),
+                        'description': $('#description').val(),
+                    },
+                    success: function (data) {
+                        alert(data.message)
+                        steps = 2
+                    }
+                });
+            }
+            if (steps == 2) {
+                $.ajax({
+                    url: '{% url 'provider:submit_shop' %}',
+                    type: 'POST',
+                    data: {
+                        'name': $('#name').val(),
+                        'logo': $('#shop_logo').val(),
+                        'commercial_code': $('#commercial_code').val(),
+                        'postal_code': $('#postal_code').val(),
+                        'address': $('#address').val(),
+                        'phone_number': $('#phone_number').val(),
+                        'description': $('#description').val(),
+                    },
+                    success: function (data) {
+                        alert(data.message)
+                        steps = 2
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}

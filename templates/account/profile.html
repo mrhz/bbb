@@ -74,6 +74,14 @@
                 <h3 class="c-font-uppercase c-font-bold font-fa">پروفایل من</h3>
                 <div class="c-line-left"></div>
             </div>
+            <div class="row" style="padding-bottom:10px;padding-right: 10px;">
+                <img
+
+
+                        src="{{ request.user.profile.get_profile_image_url }}"
+                        class="img-circle" style="margin-left: 5px" width=65px"
+                        height="65px">
+            </div>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-12 c-margin-b-20 font-fa">
                     <h3 class="c-font-uppercase c-font-bold">{{ user.first_name }} {{ user.last_name }}</h3>

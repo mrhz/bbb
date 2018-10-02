@@ -1,0 +1,103 @@
+{% extends 'metronic/base-metronic.html' %}
+{% load static %}
+{% block stylesheet %}
+    <style>
+    input[type='file']{
+        display: none;
+    }
+    </style>
+{% endblock %}
+{% block content %}
+    <!-- Edit Profile Form -->
+    <div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+												<span class="m-portlet__head-icon m--hide">
+													<i class="la la-gear"></i>
+												</span>
+                    <h3 class="m-portlet__head-text font-fa">
+                        فرم ویرایش اطلاعات
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <!--begin::Form-->
+        <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed font-fa">
+            <div class="m-portlet__body">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>نام:</label>
+                        <input type="email" class="form-control m-input font-fa"
+                               placeholder="محمد">
+                        <span class="m-form__help">لطف نام خود را وارد کنید</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="">نام خانوادگی:</label>
+                        <input type="email" class="form-control m-input font-fa"
+                               placeholder="حسنی">
+                        <span class="m-form__help">لطفا نام خانوادگی خود را وارد کنید</span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>ایمیل:</label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input type="text" class="form-control m-input"
+                                   placeholder="Example@gmail.com">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+															<span>
+																<i class="flaticon-email"></i>
+															</span>
+														</span>
+                        </div>
+                        <span class="m-form__help">لطفا آدرس ایمیل خود را وارد کنید</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="">کد ملی:</label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <input type="text" class="form-control m-input"
+                                   placeholder="0123456789">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+															<span>
+																<i class="la la-bookmark-o"></i>
+															</span>
+														</span>
+                        </div>
+                        <span class="m-form__help">لطفا کد ملی خود را وارد کنید</span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label for="exampleSelect1">جنسیت :</label>
+                        <select class="form-control m-input font-fa" id="exampleSelect1">
+                            <option value="">انتخاب کنید</option>
+                            <option value="male">مرد</option>
+                            <option value="female">زن</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-form__group col-lg-6">
+                <label class=" btn btn-primary font-fa" style="color: white" for="profile_image">تغییر عکس
+                    پروفایل</label>
+                <input type="file" class="form-control m-input m-input--air" name="profile_image"
+                       id="profile_image">
+            </div>
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions--solid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-primary font-fa">ذخیره</button>
+                            <button type="reset" class="btn btn-secondary font-fa">انصراف
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--end::Form-->
+    </div>
+{% endblock %}
