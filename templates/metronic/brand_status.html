@@ -111,29 +111,32 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="font-fa">
-                        <td>1</td>
-                        <td>سامسونگ</td>
-                        <td>سامسونگ</td>
-                        <td>Sept. 27, 2018, 11:25 a.m</td>
-                        <td><span class="m-badge m-badge--success m-badge--wide">تایید شده</span></td>
-                    </tr>
-                    <tr class="font-fa">
-                        <td>1</td>
-                        <td>سامسونگ</td>
-                        <td>سامسونگ</td>
-                        <td>Sept. 27, 2018, 11:25 a.m</td>
-                        <td><span class="m-badge m-badge--warning m-badge--wide">درحال بررسی</span></td>
-                    </tr>
-                    <tr class="font-fa">
-                        <td>1</td>
-                        <td>سامسونگ</td>
-                        <td>سامسونگ</td>
-                        <td>Sept. 27, 2018, 11:25 a.m</td>
-                        <td><span class="m-badge m-badge--danger m-badge--wide">لغو شده</span></td>
-                    </tr>
 
-
+                    {% for brand in brands %}
+                        <tr class="font-fa">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ brand.name }}</td>
+                            <td>{{ brand.owner.name }}</td>
+                            <td>{{ brand.create_date }}</td>
+                            <td>
+                                {% if brand.status == 'accepted' %}
+                                    <span class="m-badge m-badge--success m-badge--wide">
+                                    تایید شده
+                                    </span>
+                                {% endif %}
+                                {% if brand.status == 'pending' %}
+                                    <span class="m-badge m-badge--warning m-badge--wide">
+                                    در حال انتظار
+                                    </span>
+                                {% endif %}
+                                {% if brand.status == 'rejected' %}
+                                    <span class="m-badge m-badge--danger m-badge--wide">
+                                    لغو شده
+                                    </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
 

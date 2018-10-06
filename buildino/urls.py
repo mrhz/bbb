@@ -59,6 +59,8 @@ urlpatterns = [
     path('metronic/submit_shop', TemplateView.as_view(template_name='metronic/submit_shop.html'), name="submit_shop"),
     path('metronic/submit_product', TemplateView.as_view(template_name='metronic/submit_product.html'), name="submit_product"),
     path('metronic/add_shop_wizard', TemplateView.as_view(template_name='metronic/add_shop_wizard.html'), name="add_shop_wizard"),
+    path('metronic/statistics', TemplateView.as_view(template_name='metronic/statistics.html'), name="statistics"),
+    path('metronic/datatable', TemplateView.as_view(template_name='metronic/Transactions.html'), name="datatable"),
 
 
 

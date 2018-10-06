@@ -36,7 +36,7 @@ def account_shop_status(request):
     except ObjectDoesNotExist:
         agencies = None
 
-    return render(request,'account/shop_status.html',{'agencies':agencies})
+    return render(request,'metronic/shop_status.html',{'agencies':agencies})
 
 
 @login_required
@@ -46,7 +46,7 @@ def account_brand_status(request):
     except ObjectDoesNotExist:
         brands = None
 
-    return render(request,'account/brand_status.html',{'brands':brands})
+    return render(request,'metronic/brand_status.html',{'brands':brands})
 
 
 @login_required
@@ -56,7 +56,7 @@ def favorite_list(request):
     except ObjectDoesNotExist:
         favorites = None
 
-    return render(request,'account/favorite_list.html',{'favorites':favorites})
+    return render(request,'metronic/favorite_list.html',{'favorites':favorites})
 
 @login_required
 def p_list(request):

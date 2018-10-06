@@ -113,19 +113,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><img src="{% static 'assets-met/app/media/img/products/product1.jpg' %}" width="50px" height="50px"></td>
-                        <td>سیمان مشهد</td>
-                        <td>
-                            <a style="text-decoration: none" href="">
-                                <span class="m-badge m-badge--info flaticon-delete-1 p-2"></span>
-                            </a>
-                            <a style="text-decoration: none" href="">
-                                <span class="m-badge m-badge--info flaticon-edit-1 p-2"></span>
-                            </a>
-                        </td>
-                    </tr>
+                    {% for favorite in favorites %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><img src="{{ favorite.productmedia_set.first.img.url }}" width="50px"
+                                     height="50px"></td>
+                            <td>{{ favorite.name }}</td>
+                            <td>
+                                <a style="text-decoration: none" href="">
+                                    <span class="m-badge m-badge--info flaticon-delete-1 p-2"></span>
+                                </a>
+                                <a style="text-decoration: none" href="">
+                                    <span class="m-badge m-badge--info flaticon-edit-1 p-2"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
 
 
                     </tbody>
